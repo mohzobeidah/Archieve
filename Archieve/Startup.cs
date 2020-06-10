@@ -4,10 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Archieve.DataAccess.DataConfigration;
 using Archieve.DatabaseLayer.Models;
+using Archieve.Servcies;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,16 +31,74 @@ namespace Archieve
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<User, IdentityRole>()
-        .AddEntityFrameworkStores<DataContext>()
-        .AddDefaultTokenProviders();
-
-            ////
+            
+            
             services.AddDbContext<DataContext>(options =>
              options.UseSqlServer(
             Configuration.GetConnectionString("DefaultConnection")));
-            //
-            services.AddControllersWithViews();
+         services.AddIdentity<User, IdentityRole>()
+        .AddEntityFrameworkStores<DataContext>()
+        .AddDefaultTokenProviders();
+            /////////////////
+            ///
+
+            services.AddRepositoryServcies();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MyAllowSpecificOrigins", builder =>
+                
+                    builder
+                    .WithOrigins("http://127.0.0.1:1986/TWAIN@Web/ajax")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    //"http://127.0.0.1:1986/TWAIN@Web/ajax"
+                );
+           
+            });
+            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+            ///////////////////
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+            /////////////////////////////////
+
+        
+
+            services.AddAutoMapper(typeof(Startup));
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                //options.User.RequireUniqueEmail = false;
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+
+                options.LoginPath = "/Account/Login";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
+      
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,9 +118,9 @@ namespace Archieve
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
-
+            app.UseCors("MyAllowSpecificOrigins");
+            app.UseAuthentication();
+            //app.UseMvcWithDefaultRoute();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

@@ -1,0 +1,366 @@
+﻿
+@{
+    ViewData["Title"] = "الارشيف الالكتروني";
+}
+
+<h1>ManageSystem</h1>
+<div class="col-xl-12">
+    <!--begin::Card-->
+    <div class="card card-custom gutter-b">
+        <div class="card-header">
+            <div class="card-title">
+                <h3 class="card-label">الارشيف</h3>
+            </div>
+        </div>
+        <div class="card-body">
+            <!--begin::Example-->
+            <div class="example">
+                <p>
+                    شاشة بحث وعرض الارشيف
+                </p>
+                    
+                          <div class="card">
+                                <div class="card-header">
+                                    <button type="button" id="" class="btn btn-primary" style="float:right;">
+                                        اضافة
+                                    </button>
+                            
+
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-hover table-striped" id="tblMailArchive">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" width="5%" class="text-center">#</th>
+                                                <th scope="col" width="5%" class="text-center">رقم البريد</th>
+                                                <th scope="col" width="5%" class="text-center">نوع البريد</th>
+                                                <th scope="col" width="5%" class="text-center">توجيه البريد</th>
+                                                <th scope="col" width="15%" class="text-center">الجهة المرسلة</th>
+                                                <th scope="col" width="15%" class="text-center">الجهة المستقبلة</th>
+                                                <th scope="col" width="10%" class="text-center">التاريخ</th>
+                                                <th scope="col" width="40%" class="text-center">الموضوع</th>
+
+                                                <th scope="col" width="5%" class="text-center">الاعدادات</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                       
+
+            </div>
+            <!--end::Example-->
+        </div>
+    </div>
+    <!--end::Card-->
+    <!--begin::Card-->
+    <!--end::Card-->
+</div>
+@*<partial name="" />*@
+@section CssLinks {
+    <link href="~/DataTables-1.10.20/media/css/dataTables.bootstrap4.css" rel="stylesheet" />
+}
+@section ScriptsLinks{
+    <script src="~/lib/jquery/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/DataTables-1.10.20/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/DataTables-1.10.20/media/js/dataTables.bootstrap4.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/sweet-alert.js"></script>
+}
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            completed = function (response) {
+                console.log(response.responseJSON)
+                $.toast({
+                    heading: '',
+                    text: 'تم الحفظ بنجاح',
+                    showHideTransition: 'slide',
+                    icon: ''
+                });
+                $('#modalClassification').modal('hide');
+                $("#tblGeneral").DataTable().ajax.reload();
+
+            };
+
+            failureAdd = function (jqXHR, status) {
+                $.toast({
+                    heading: 'Error',
+                    text: 'Uncaught Error.\n' + jqXHR.responseText,
+                    showHideTransition: 'fade',
+                    icon: 'error'
+                })
+            };
+
+            //$("#btnModalClassification").click(function () {
+
+            //    $('#modal-default').modal('show');
+            //    var form = $('#saveClassification').serialize();
+
+            //    console.log(form);
+
+            //});
+
+            $(".edit").click(function () {
+                $('#modalClassification').modal('show');
+            });
+            var table = $("#tblMailArchive");
+
+            $(document).ready(function () {
+                BindDataTable("/EArchive/getMailArchive");
+            })
+            $('#SearchName').click(function () {
+                BindDataTable.ajax.reload();
+            });
+            var BindDataTable = function (url) {
+                table.DataTable({
+                    "destroy": true,
+                    "bServerSide": true,
+                    "sSearch": "Search all columns:",
+                    "sAjaxSource": url,//"/Archive/getClassification",
+                    //"aaSorting": [[0, "desc"]],
+                    "processing": "true",
+                    // Internationalisation. For more info refer to http://datatables.net/manual/i18n
+                    "language": {
+                        //"aria": {
+                        //    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                        //    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                        //},
+                        "emptyTable": "لا يوجد بيانات",
+                        "info": "عرض _START_ إلى _END_ من _TOTAL_ صفوف",
+                        "infoEmpty": "لم يتم العثور على نتائج",
+                        "infoFiltered": "(filtered1 من _MAX_ العدد الكلي)",
+                        "lengthMenu": "_MENU_ اظهار",
+                        "search": "بحث:",
+                        "processing": '<h1>جاري جلب البيانات ...</h1>',
+                        "zeroRecords": "لم يتم العثور على عناصر مطابقة",
+                        "oPaginate": {
+                            "sFirst": "الأول",
+                            "sPrevious": "السابق",
+                            "sNext": "التالي",
+                            "sLast": "الأخير"
+                        },
+                    },
+                    aoData: {
+                        "data": function (d) {
+                            return $.extend({}, d, RefrechParam([
+                                //{ paramId: 'job', inputId: 'job' },
+                                //{ paramId: 'FullName', inputId: 'FullName' },
+                                //{ paramId: 'User_ID', inputId: 'hdnUserID_Search' }
+                            ]));
+                        },
+                    },
+                    "fnServerData": function (sSource, aoData, fnCallback) {
+
+                        $.ajax({
+
+                            type: "post",
+                            data: aoData,
+                            url: sSource,
+                            success: fnCallback
+                        })
+
+                    },
+                    "aoColumns": [
+
+                        {
+                            data: null, render: function (data, type, row, iDisplayIndex) {
+                                return (iDisplayIndex.row + 1);
+                            }, "className": "text-center"
+
+                        },
+                        { data: "mailId", "className": "text-center" },
+                        { data: "mailType", "className": "text-center" },
+                        { data: "postType", "className": "text-center" },
+                        { data: "classificationType", "className": "text-center" },
+                        { data: "insertdate", "className": "text-center" },
+                        { data: "fromJehaz", "className": "text-center" },
+                        { data: "toJehaz", "className": "text-center" },
+                        { data: "topic", "className": "text-center" },
+
+                        {
+                            "className": "text-center", data: null, render: function (data, type, row) {
+                                return
+                                    //'<div class="btn-group"><a href="" data-id="' + data.id + '" class="btn red btn-sm btn-outline deleteBtn  sbold" style="margin-left: 5px;"> <i class="fa fa-trash fa-fw"></i> حذف </a>'
+                                    //+ '<a href=""" data-id="' + data.id + '" class="btn blue btn-sm btn-outline sbold btnEdit" style="margin-left: 5px;"> <i class="fa fa-edit fa-fw"></i> تعديل</a></div>'
+
+                                //////////////////////////////////////////////////
+
+                                    '<div class="input-group mb-3">' +
+                                    '<div class="input-group-prepend">' +
+                                    '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action</button>' +
+                                    '<div class="dropdown-menu">' +
+                                    '<a data-ajax="true" href=""data-id="' + data.id + '"  data-ajax-method="get" data-ajax-complete="completed" data-ajax-failure ="failure" class="dropdown-item btn btn-outline-info sbold editClassification" title=" Edit/تعديل" ><i class="fa fa-edit fa-fw"></i> Edit</a>' +
+                                    '<a class="dropdown-item btn red btn-sm btn-outline deleteBtn  sbold" href=""data-id="' + data.id + '" style="margin-left: 5px;"> <i class="fa fa-trash fa-fw"></i> Delete</a>' +
+                                    '<div class="dropdown-divider"></div>' +
+                                    '<a class="dropdown-item" href="#">Details</a>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>'
+                                //////////////////////////////////////////////////
+                                //return '<div class="btn-group">' +
+                                //    '<button type="button" class="btn btn-info btn-flat">Actions</button>' +
+                                //    '<button type="button" class="btn btn-info btn-flat dropdown-toggle dropdown-icon" data-toggle="dropdown">' +
+                                //    '<span class="sr-only">Toggle Dropdown</span>' +
+                                //    ' <div class="dropdown-menu" role="menu">' +
+                                //    '<a class="dropdown-item btn btn-info" target="_blank"  href="javascript:void(alert("sssss"))" >Update</a>' +
+                                //    ' <a class="dropdown-item" href="#">Delete</a>' +
+                                //    ' <a class="dropdown-item" href="#">Details</a>' +
+                                //    ' </div>' +
+                                //    '</button>' +
+                                //    ' </div>'
+                                //  return '<a class="btn-group"><a href="/Admin/Product/Details/' + data.id + '" class="btn red btn-sm btn-outline btnActivation sbold" style="margin-left: 5px;" title="عرض تفاصيل"><i class="fa fa-edit fa-address-card-o"></i> عرض تفاصيل </a>'
+                                //     + '<a data-ajax="true" data-ajax-method="get" data-ajax-complete="completed" data-ajax-failure ="failure"  class="btn blue btn-sm btn-outline sbold AddProduct" style="margin-left: 5px;" title=" نقل"> <i class="fa fa-edit fa-fw"></i> Add Product</a></div>'
+                                //+ '<a href="AddEditUser?UserID=' + data.id + '" class="btn blue btn-sm btn-outline sbold" style="margin-left: 5px;" title=" تعديل"> <i class="fa fa-edit fa-fw"></i> تعديل</a></div>'
+                                //+ '<a href=/Quarantine/AddPersonMovement?id=' + data.id + '    data-ajax="true" data-ajax-method="get" data-ajax-complete="completed" data-ajax-failure ="failure"  class="btn blue btn-sm btn-outline sbold" style="margin-left: 5px;" title=" نقل"> <i class="fa fa-edit fa-fw"></i> نقل نزيل</a></div>'
+                                // +'<a class="AddProduct"> Add Product</a>'
+
+                            }
+                        }
+
+                    ], "rowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+
+
+                    }, "drawCallback": function (settings) {
+
+                        //if (typeof DrawCallbackFunction === "function") {
+                        //    DrawCallbackFunction();
+
+                        //}
+                        //$('#tblGeneral').on('click', 'a.editClassification', function () {
+                        //    $('#modal-default').modal('show');
+                        //});
+                    },
+                });
+            }
+
+            $(document).on('click', '.btnEdit', function (e) {
+
+                e.preventDefault();
+                e.stopPropagation();
+                debugger;
+                var _this = $(this);
+                console.log(_this)
+                if ($('#atab_1').hasClass('active')) {
+                    $("#saveClassification #Id").val(_this.data('id'))
+
+                    var obj = $('#tblGeneral').DataTable().row(_this.closest('td')).data();
+                    console.log(obj.gname);
+                    $("#ClassificationName").val(obj.gname);
+                    $('#modalClassification').modal('show');
+
+                   // console.log("ClassificationName", $("#saveClassification #ClassificationName").val(obj.gname));
+                }
+
+                //if ($('#atab_2').closest('li').hasClass('active')) {
+
+                //    $("#MailTypeForm #Id").val(_this.data('id'))
+
+                //    var obj = $('#classiication').DataTable().row(_this.closest('td')).data();
+                //    console.log($('#classiication').DataTable().row(_this.closest('td')).data());
+                //    $("#MailTypeForm #MailName").val(obj.Name);
+                //}
+                //if ($('#atab_3').closest('li').hasClass('active')) {
+                //    $("#SecurityForm #Id").val(_this.data('id'))
+
+                //    var obj = $('#classiication').DataTable().row(_this.closest('td')).data();
+                //    console.log($('#classiication').DataTable().row(_this.closest('td')).data());
+                //    $("#SecurityForm #SecurityName").val(obj.Name);
+                //}
+
+                //if ($('#atab_5').closest('li').hasClass('active')) {
+                //    $("#PostTypeForm #Id").val(_this.data('id'))
+
+                //    var obj = $('#classiication').DataTable().row(_this.closest('td')).data();
+                //    console.log($('#classiication').DataTable().row(_this.closest('td')).data());
+                //    $("#PostTypeForm #PostName").val(obj.Name);
+                //}
+                //if ($('#atab_4').closest('li').hasClass('active')) {
+                //    $("#StatusForm #Id").val(_this.data('id'))
+
+                //    var obj = $('#classiication').DataTable().row(_this.closest('td')).data();
+                //    console.log($('#classiication').DataTable().row(_this.closest('td')).data());
+                //    $("#StatusForm #StatusName").val(obj.Name);
+                //}
+
+
+                return false;
+
+            });
+            $(document).on('click', '.deleteBtn', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var _this = $(this);
+                console.log(_this)
+
+                var data, Url, id;
+                if ($('#atab_1').hasClass('active')) {
+                    id = _this.data("id");
+                    Url = "/Archive/deleteClassification";
+
+                }
+
+                swal({
+                    title: 'تأكيد؟',
+                    text: 'هل أنت متأكد من عملية الحذف  ؟',
+                    icon: 'warning',
+                    buttons: {
+                        cancel: {
+                            text: 'الغاء',
+                            value: true,
+                            visible: true,
+
+                        },
+                        confirm: {
+                            text: 'موافق',
+                            value: true,
+                            visible: true,
+                            className: "btn-danger",
+                            closeModal: true
+                        }
+                    }
+                }).then(function (result) {
+                    var delteUrl = Url;
+                    console.log(id, Url);
+                    data = { id: id };
+                    $.post(delteUrl, data, function () {
+
+                    }).done(function (data) {
+                        if (data.status > 0) {
+
+                            swal({ title: 'تمت العملية بنجاح', showCancelButton: false, icon: 'success', text: data.message, })
+
+
+                        } else {
+                            swal({ title: 'نأسف لم يتم الحذف', showCancelButton: false, icon: 'error', text: data.message, })
+                        }
+                    }).fail(function (data) {
+
+                        swal(
+                            {
+                                title: 'Oops',
+                                showCancelButton: false,
+                                icon: 'error',
+                                text: data.responseText,
+                            })
+
+                    }).always(function () {
+                        table.DataTable().ajax.reload();
+                        // $(this).find('input[type=submit]').button('reset')
+                    });
+
+                });
+            });
+            //end delete btn
+         
+        });
+    </script>
+}
+
+

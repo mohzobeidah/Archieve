@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewData["Title"] = "Structures";
+}
+
+<h1>Structures</h1>
+
+<div class="row">
+    <div class="col-lg-12">
+        <!--begin::Card-->
+        <div class="card card-custom example example-compact gutter-b">
+            <div class="card-header">
+                <div class="card-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>الهيكلية الادارية
+                    </div>
+                </div>
+                <div class="card-toolbar">
+                    <div class="example-tools justify-content-center">
+                        <span class="example-toggle" data-toggle="tooltip" title="View code"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div style="padding: 2px;">
+                    <input id="AccountTrees_q" class="form-control" type="text" placeholder="البحث في الهيكلية" />
+                </div>
+                <div id="AccountTrees" class="tree-demo">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section CssLinks {
+    <link href="~/assets/plugins/custom/jstree/jstree.bundle.rtl.css" rel="stylesheet" />
+}
+
+@section ScriptsLinks{
+    <script src="~/lib/jquery/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/assets/plugins/custom/jstree/jstree.bundle.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/sweet-alert.js"></script>
+}
+@section Scripts{
+
+    <script>
+        $('#AccountTrees , .AccountTreesC').jstree({
+
+            'core': {
+                'data': {
+                    url: '/Structure/StructuresAjax',
+                },
+
+                "strings": { "loading": "جاري عرض بيانات الشجرة ..." },
+                "themes": {
+                    "responsive": false
+                }
+            },
+
+            "types": {
+                "default": {
+                    "icon": "fa fa-folder icon-state-warning icon-lg"
+                },
+                "file": {
+                    "icon": "fa fa-file icon-state-warning icon-lg"
+                }
+            },
+
+            "plugins": ["contextmenu", "types"],
+
+            "contextmenu": { items: customMenu }
+        });
+
+        function customMenu(node) {
+
+            log('node.original : ', node.original);
+
+            var menuObject = {};
+
+            menuObject.Create = {
+                "separator_before": false,
+                "separator_after": false,
+                "label": "إضافة",
+                "icon": "fa fa-plus",
+                "action": function (obj) {
+                    $("#parent").val(node.id);
+
+
+                    $("#MoTitle").text("اضافة هيكلية جديدة");
+                    $("#CreateEdit").modal('show');
+                },
+            }
+
+            menuObject.Edit = {
+                "separator_before": false,
+                "separator_after": false,
+                "label": "تعديل",
+                "icon": "fa fa-edit",
+                //'check_callback': true,
+                "action": function (obj) {
+
+                    Util.bindInputs("#DeptAdd", node.original, '');
+                    //$("#DepartmentDesc").val(node.original.DepartmentDesc);
+                    //$("#DepartmentType").val(node.original.DepartmentType);
+                    // $("#DepartmentNo").val(node.id);
+                    // $("#Parent").val(node.parent);
+                    $("#MoTitle").text("تعديل هيكلية جديدة");
+                    $("#CreateEdit").modal('show');
+                }
+            }
+
+            menuObject.Remove = {
+                "separator_before": true,
+                "separator_after": false,
+                "label": "حذف",
+                "icon": "fa fa-trash",
+                "action": function (obj) {
+
+                    alert(node.parent)
+                    var confirm_delete_node = confirm('هل أنت متأكد من الحذف');
+                    if (confirm_delete_node == true) {
+
+                        $.ajax({
+                            type: "post",
+                            url: "/Structure/DeptDel",
+                            data: {
+
+                                id: node.id,
+
+                            }
+                        }).success(function (data) {
+                            if (data.status > 0) {
+                                //alert('Success:' + data.message);
+                                m.toast(data);
+                                $('#AccountTrees').jstree('refresh');
+                            } else {
+                                m.toast(data);
+                                //alert('Error:' + data.message);
+                            }
+                        });
+
+                    }
+                }
+            }
+
+            var tree = $("#AccountTrees").jstree(true);
+            console.log("fff", menuObject)
+
+            return menuObject;
+        }
+
+
+    </script>
+}
+

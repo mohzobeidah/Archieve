@@ -1,0 +1,35 @@
+﻿@using Archieve
+@using Archieve.Models
+@*@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers*@
+
+@model Archieve.DataAccess.ViewModel.PostTypeVM
+<div class="modal fade" id="modalPostType">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">نوع البريد</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" asp-action="savePostType" asp-controller="Archive" id="savePostType" data-ajax="true" data-ajax-method="post" data-ajax-complete="completed">
+                @*asp-area=""*@
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="hidden" asp-for="@Model.Id" class="form-control" />
+                        <label for="">نوع البريد الاداري</label>
+                        <input asp-for="@Model.PostName" class="form-control" />
+                        <span asp-validation-for="PostName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
