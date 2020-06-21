@@ -34,6 +34,7 @@ namespace Archieve.DataAccess.DataConfigration
             new SecurityConfiguration(modelBuilder.Entity<Security>());
             new ClassificationConfigration(modelBuilder.Entity<Classification>());
             new PostTypeConfigration(modelBuilder.Entity<PostType>());
+            new StatusConfigration(modelBuilder.Entity<Status>());
         }
     }
 }
