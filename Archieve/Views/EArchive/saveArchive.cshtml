@@ -118,7 +118,7 @@
             </div>
             <!--begin::Form-->
 
-            <form method="post" asp-action="saveArchive" asp-controller="EArchive" data-ajax="true" data-ajax-complete="completed" data-ajax-method="post">
+            <form method="post" asp-action="saveArchive" asp-controller="EArchive"id="saveArchive" data-ajax="true" data-ajax-complete="completed" data-ajax-method="post">
                 <div class="card-body">
                     @*<div class="form-group mb-8">
                             <div class="alert alert-custom alert-default" role="alert">
@@ -185,7 +185,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>الجهة المرسلة</label>
-                                        <input type="text" asp-for="@Model.FK_FromJehazId" class="form-control" id="FromJehazId" placeholder="الجهة المستقبلة" />
+                                        <input type="text" asp-for="FK_FromJehazId" class="form-control" id="FromJehazId" placeholder="الجهة المستقبلة" />
                                         <span class="form-text text-muted"></span>
                                     </div>
                                 </div>
@@ -216,7 +216,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-8">
                                     <label class="control-label"> الموضوع</label>
@@ -259,7 +258,7 @@
                     <!--end: Code-->
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-scanner"></i>حفظ</button>
+                    <button type="button"id="btnSaveArchive" class="btn btn-primary"><i class="fa fa-scanner"></i>حفظ</button>
                     <button type="reset" class="btn btn-secondary">الغاء</button>
                 </div>
             </form>
@@ -291,11 +290,11 @@
                 //$("#ToJehazId").hover(handlerIn)
                 $('#FromoJehazId').click(function (e) {
                     e.stopPropagation();
-                    $('#tree-modal').modal({ cache: false }, 'show');
+                    $('#tree-modal').modal('show');
                 });
                 $('#ToJehazId').click(function (e) {
                     e.stopPropagation();
-                    $('#tree-modal').modal({ cache: false }, 'show');
+                    $('#tree-modal').modal('show');
                 });
                 $('.select2').select2({});
                 //$().datepicker();
@@ -400,9 +399,36 @@
             $('.modal').modal('hide');
             $('#countnofinal').text(fileListfinal.length)
         });
+        /////////////////////////////////////////////////////////////////
 
+        $(function () {
 
+            //hang on event of form with id=myform
+            $("#btnSaveArchive").click(function (e) {
+                console.log('ddddddddd');
+                //prevent Default functionality
+                e.preventDefault();
+                alert("dddddddddddddddddddddddddddd");
 
+           //     $('#ScannedFiles').val(myfile.toString());
+
+          //      var actionurl = e.currentTarget.action;
+
+                //do your own request an handle the results
+                $.ajax({
+                    url: "/EArchive/saveArchive/",
+                    type: 'post',
+                    dataType: 'application/json',
+                    data:
+                        $("#saveArchive").serialize(),
+                    success: function (data) {
+                        //  ... do something with the data...
+                    }
+                });
+            });
+        });
+
+        /////////////////////////////////////////////////////////////////
         $(function () {
 
             //hang on event of form with id=myform
