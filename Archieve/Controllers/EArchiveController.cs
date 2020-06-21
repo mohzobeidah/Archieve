@@ -90,7 +90,7 @@ namespace Archieve.Controllers
                 eEcho = param.sEcho,
                 iTotalDisplayRecords = recordFilter,
                 iTotalRecords = totalNo
-            });
+            });  
         }
 
         public void getAllList()
@@ -101,8 +101,7 @@ namespace Archieve.Controllers
             ViewBag.securityList = securityService.GetQueryable(c => c.IsDelete == false).GetListItems("SecurityName", "Id", 0).ToList();
             ViewBag.statusList = statusService.GetQueryable(c => c.IsDelete == false).GetListItems("StatusName", "Id", 0).ToList();
         }
-        [EnableCors("MyAllowSpecificOrigins")]
-
+       [EnableCors("MyAllowSpecificOrigins")]
         public async Task<IActionResult> saveArchive(int id)
         {
             if (id==0)
@@ -114,7 +113,6 @@ namespace Archieve.Controllers
                 eArchive.postTypeList = postTypeService.GetQueryable(c => c.IsDelete == false).GetListItems("PostName", "Id", 0).ToList();
                 eArchive.securityList = securityService.GetQueryable(c => c.IsDelete == false).GetListItems("SecurityName", "Id", 0).ToList();
                 eArchive.statusList = statusService.GetQueryable(c => c.IsDelete == false).GetListItems("StatusName", "Id", 0).ToList();
-
 
                 return View(eArchive);
             }

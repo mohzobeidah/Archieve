@@ -142,7 +142,7 @@
                         <div class="col-md-12">
                             <input type="hidden" asp-for="@Model.ID" id="ID" />
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>نوع البريد</label>
                                         <select class="form-control select2" asp-for="@Model.FK_MailTypeId" asp-items="@Model.mailTypeList" style="width: 100%;">
@@ -151,7 +151,7 @@
                                         <span class="form-text text-muted"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>رقم البريد</label>
                                         <input type="text" asp-for="@Model.ID" class="form-control" id="mailID" placeholder="ادخل رقم البريد" />
@@ -159,7 +159,7 @@
                                         <span class="form-text text-muted"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>سرية البريد</label>
                                         <select class="form-control select2" asp-for="@Model.FK_SecurityId" asp-items="@Model.securityList" style="width: 100%;">
@@ -169,7 +169,7 @@
                                         <span class="form-text text-muted"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>توجيه الكتاب</label>
                                         <select class="form-control select2" asp-for="@Model.FK_PostTypeId" asp-items="@Model.postTypeList" style="width: 100%;">
@@ -179,17 +179,24 @@
                                         <span class="form-text text-muted"></span>
                                     </div>
                                 </div>
-                                
-                                <div class="col-md-2">
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>الجهة المرسلة</label>
+                                        <input type="text" asp-for="@Model.FK_FromJehazId" class="form-control" id="FromJehazId" placeholder="الجهة المستقبلة" />
+                                        <span class="form-text text-muted"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>الجهة المستقبلة</label>
                                         <input type="text" asp-for="@Model.FK_ToJehazId" class="form-control" id="ToJehazId" placeholder="الجهة المستقبلة" />
                                         <span class="form-text text-muted"></span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>تصنيف الكتاب</label>
                                         <select class="form-control select2" asp-for="@Model.FK_ClassificationId" asp-items="@Model.classificationList" style="width: 100%;">
@@ -200,7 +207,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <div class="form-group date">
                                         <label>التاريخ</label>
                                         <input type="text" asp-for="@Model.InsertDate" class="form-control date-picker" readonly="readonly" id="datetimepicker" placeholder="" />
@@ -208,6 +215,29 @@
                                         <span class="form-text text-muted"></span>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label class="control-label"> الموضوع</label>
+                                    <div class="form-group">
+                                        <textarea asp-for="@Model.Topic" class="form-control" id="Topic" cols="65" rows="2"></textarea>
+                                        @*<textarea name="Txtt" cols="65" rows="2"></textarea>*@
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label"> ملاحظات</label>
+                                    <div class="form-group">
+                                        <textarea asp-for="@Model.Note" class="form-control" id="Note" cols="65" rows="2"></textarea>
+                                        @*<textarea name="Txtt" cols="65" rows="2"></textarea>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*<div class="row">
+                            </div>*@
+
+                            <div class="row">
                                 <div class="col-md-2">
                                     <button id="scanModal" type="button" class="btn btn-primary customized fBtn" style="margin-top: 25px;">
                                         <i class="fa fa-scanner"></i> الماسح الضوئي
@@ -217,28 +247,9 @@
                                     <div class="row" style="display:inline-block"><h3 style="margin-top: 25px;"> عدد الارواق <span id="countnofinal">0</span></h3></div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label class="control-label"> الموضوع</label>
-                                    <div class="form-group">
-                                        <textarea asp-for="@Model.Topic" class="form-control" id="Topic" cols="65" rows="3"></textarea>
-                                        @*<textarea name="Txtt" cols="65" rows="2"></textarea>*@
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label class="control-label"> ملاحظات</label>
-                                    <div class="form-group">
-                                        <div class="col-lg-9 col-md-9 col-sm-12">
-                                            <div class="summernote" id="kt_summernote"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
-                    </div>
+                        </div>
 
 
                     <input type="hidden" name="ScannedFiles" id="ScannedFiles" />

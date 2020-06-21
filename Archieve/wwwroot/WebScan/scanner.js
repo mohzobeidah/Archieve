@@ -298,16 +298,16 @@ var sendAjax = function (method, doneFunction, data, async, failFunction, comple
             DisactivateScanForm();
         }
         $.ajax({
-             crossDomain: true,
-               jsonp: false,
-             xhrFields: {
-                 withCredentials: true
-             },
-
+             //crossDomain: true,
+             //  jsonp: false,
+             //xhrFields: {
+             //    withCredentials: true
+             //},
+          //  headers: { 'Access-Control-Allow-Origin': '*' },
             async: async,
             url: 'http://127.0.0.1:1986/TWAIN@Web/' + "ajax",
             type: 'POST',
-            // dataType: 'jsonp',
+            //dataType: 'jsonp',
             data: "method=" + method + data,
          
             success: function (responce) {
@@ -321,9 +321,7 @@ var sendAjax = function (method, doneFunction, data, async, failFunction, comple
                 }
                 failFunction(msg);
             },
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
+         
             complete: function (resp) {
                 completeFunction();
                 if (useOverlay) {

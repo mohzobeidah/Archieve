@@ -43,20 +43,8 @@ namespace Archieve
             ///
 
             services.AddRepositoryServcies();
-            services.AddCors(options =>
-            {
-                options.AddPolicy("MyAllowSpecificOrigins", builder =>
-                
-                    builder
-                    .WithOrigins("http://127.0.0.1:1986/TWAIN@Web/ajax")
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials()
-                    //"http://127.0.0.1:1986/TWAIN@Web/ajax"
-                );
-           
-            });
-            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+    
+            //services.AddAuthentication(IISDefaults.AuthenticationScheme);
             ///////////////////
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
@@ -97,7 +85,19 @@ namespace Archieve
                 options.AccessDeniedPath = "/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
-      
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MyAllowSpecificOrigins", builder =>
+
+                    builder
+                    .WithOrigins("http://127.0.0.1:1986/TWAIN@Web/ajax")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                //"http://127.0.0.1:1986/TWAIN@Web/ajax"
+                );
+
+            });
 
         }
 
@@ -118,8 +118,10 @@ namespace Archieve
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseCors("MyAllowSpecificOrigins");
+           
             app.UseAuthentication();
+            app.UseCors("MyAllowSpecificOrigins");
+            app.UseCors(options => { options.AllowAnyOrigin(); options.AllowAnyHeader(); });
             //app.UseMvcWithDefaultRoute();
             app.UseEndpoints(endpoints =>
             {
@@ -127,6 +129,7 @@ namespace Archieve
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            
         }
     }
 }
