@@ -10,9 +10,11 @@ namespace Archieve.DatabaseLayer.Models
     public class ImageArchive
     {
         public int Id { get; set; }
-        public string FK_MailArchiveID { get; set; }
 
-        [Column(TypeName = "VARCHAR(200)")]
+        public int  FK_MailArchiveID { get; set; }
+        [ForeignKey(nameof(FK_MailArchiveID))]
+        public virtual MailArchive  MailArchive { get; set; }
+
         public byte[] ContentMail { get; set; }
         public string Name { get; set; }
         public string Size { get; set; }

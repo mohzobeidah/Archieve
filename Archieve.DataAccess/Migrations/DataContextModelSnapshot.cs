@@ -27,13 +27,13 @@ namespace Archieve.DataAccess.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClassificationName")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("InsertDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InsertUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
@@ -42,11 +42,21 @@ namespace Archieve.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdateUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Classifications");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClassificationName = "دولي ",
+                            InsertDate = new DateTime(2020, 6, 22, 0, 46, 33, 500, DateTimeKind.Local).AddTicks(8143),
+                            IsDelete = false,
+                            UpdateDate = new DateTime(2020, 6, 22, 0, 46, 33, 500, DateTimeKind.Local).AddTicks(8808)
+                        });
                 });
 
             modelBuilder.Entity("Archieve.DatabaseLayer.Models.Employee", b =>
@@ -57,7 +67,7 @@ namespace Archieve.DataAccess.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("FName")
-                        .HasColumnType("VARCHAR(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FinID")
                         .HasColumnType("nvarchar(max)");
@@ -69,25 +79,25 @@ namespace Archieve.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InsertUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
                     b.Property<string>("LName")
-                        .HasColumnType("VARCHAR(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SName")
-                        .HasColumnType("VARCHAR(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThName")
-                        .HasColumnType("VARCHAR(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdateUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmpId");
 
@@ -101,14 +111,14 @@ namespace Archieve.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ContentMail")
-                        .HasColumnType("VARCHAR(200)");
+                    b.Property<byte[]>("ContentMail")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Extension")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FK_MailArchiveID")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FK_MailArchiveID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("InsertDate")
                         .HasColumnType("datetime2");
@@ -138,6 +148,8 @@ namespace Archieve.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FK_MailArchiveID");
 
                     b.ToTable("ImageArchives");
                 });
@@ -174,7 +186,7 @@ namespace Archieve.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InsertUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
@@ -183,24 +195,18 @@ namespace Archieve.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
-                        .HasColumnType("VARCHAR(4000)");
-
-                    b.Property<string>("ScannedFiles")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Topic")
-                        .HasColumnType("VARCHAR(4000)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdateUser")
-                        .HasColumnType("VARCHAR(250)");
-
-                    b.Property<string>("Year")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("test")
+                    b.Property<string>("Year")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -229,7 +235,7 @@ namespace Archieve.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InsertUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
@@ -237,20 +243,23 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("MailName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MailTypeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdateUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MailTypeId");
-
                     b.ToTable("MailTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsDelete = false,
+                            MailName = "داخي "
+                        });
                 });
 
             modelBuilder.Entity("Archieve.DatabaseLayer.Models.PostType", b =>
@@ -264,7 +273,7 @@ namespace Archieve.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InsertUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
@@ -272,20 +281,25 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("PostName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PostTypeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdateUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PostTypeId");
-
                     b.ToTable("PostTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            InsertDate = new DateTime(2020, 6, 22, 0, 46, 33, 501, DateTimeKind.Local).AddTicks(5008),
+                            IsDelete = false,
+                            PostName = "دوليddd",
+                            UpdateDate = new DateTime(2020, 6, 22, 0, 46, 33, 501, DateTimeKind.Local).AddTicks(5656)
+                        });
                 });
 
             modelBuilder.Entity("Archieve.DatabaseLayer.Models.Security", b =>
@@ -299,13 +313,10 @@ namespace Archieve.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InsertUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
-
-                    b.Property<int?>("SecurityId")
-                        .HasColumnType("int");
 
                     b.Property<string>("SecurityName")
                         .HasColumnType("nvarchar(max)");
@@ -314,13 +325,21 @@ namespace Archieve.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdateUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SecurityId");
-
                     b.ToTable("Securities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            InsertDate = new DateTime(2020, 6, 22, 0, 46, 33, 496, DateTimeKind.Local).AddTicks(5600),
+                            IsDelete = false,
+                            SecurityName = "سري",
+                            UpdateDate = new DateTime(2020, 6, 22, 0, 46, 33, 500, DateTimeKind.Local).AddTicks(1811)
+                        });
                 });
 
             modelBuilder.Entity("Archieve.DatabaseLayer.Models.Status", b =>
@@ -334,13 +353,10 @@ namespace Archieve.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InsertUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
-
-                    b.Property<int?>("StatusId")
-                        .HasColumnType("int");
 
                     b.Property<string>("StatusName")
                         .HasColumnType("nvarchar(max)");
@@ -349,11 +365,9 @@ namespace Archieve.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdateUser")
-                        .HasColumnType("VARCHAR(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StatusId");
 
                     b.ToTable("Statuses");
                 });
@@ -622,6 +636,15 @@ namespace Archieve.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Archieve.DatabaseLayer.Models.ImageArchive", b =>
+                {
+                    b.HasOne("Archieve.DatabaseLayer.Models.MailArchive", "MailArchive")
+                        .WithMany("imageArchives")
+                        .HasForeignKey("FK_MailArchiveID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Archieve.DatabaseLayer.Models.MailArchive", b =>
                 {
                     b.HasOne("Archieve.DatabaseLayer.Models.Classification", "Classification")
@@ -629,56 +652,28 @@ namespace Archieve.DataAccess.Migrations
                         .HasForeignKey("FK_ClassificationId");
 
                     b.HasOne("Archieve.DatabaseLayer.Models.MailType", "MailType")
-                        .WithMany()
+                        .WithMany("mailArchives")
                         .HasForeignKey("FK_MailTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Archieve.DatabaseLayer.Models.PostType", "PostType")
-                        .WithMany()
+                        .WithMany("mailArchives")
                         .HasForeignKey("FK_PostTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Archieve.DatabaseLayer.Models.Security", "Security")
-                        .WithMany()
+                        .WithMany("mailArchives")
                         .HasForeignKey("FK_SecurityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Archieve.DatabaseLayer.Models.Status", "Status")
-                        .WithMany()
+                        .WithMany("mailArchives")
                         .HasForeignKey("FK_StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Archieve.DatabaseLayer.Models.MailType", b =>
-                {
-                    b.HasOne("Archieve.DatabaseLayer.Models.MailType", null)
-                        .WithMany("mailTypes")
-                        .HasForeignKey("MailTypeId");
-                });
-
-            modelBuilder.Entity("Archieve.DatabaseLayer.Models.PostType", b =>
-                {
-                    b.HasOne("Archieve.DatabaseLayer.Models.PostType", null)
-                        .WithMany("PostTypes")
-                        .HasForeignKey("PostTypeId");
-                });
-
-            modelBuilder.Entity("Archieve.DatabaseLayer.Models.Security", b =>
-                {
-                    b.HasOne("Archieve.DatabaseLayer.Models.Security", null)
-                        .WithMany("security")
-                        .HasForeignKey("SecurityId");
-                });
-
-            modelBuilder.Entity("Archieve.DatabaseLayer.Models.Status", b =>
-                {
-                    b.HasOne("Archieve.DatabaseLayer.Models.Status", null)
-                        .WithMany("status")
-                        .HasForeignKey("StatusId");
                 });
 
             modelBuilder.Entity("Archieve.DatabaseLayer.Models.WorkPlace", b =>

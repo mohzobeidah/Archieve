@@ -251,7 +251,7 @@
                         </div>
 
 
-                    <input type="hidden" name="ScannedFiles" id="ScannedFiles" />
+                    <input type="text" asp-for="ScannedFiles" id="ScannedFiles" />
 
                     <!--begin: Code-->
                     
@@ -410,7 +410,7 @@
                 e.preventDefault();
                 alert("dddddddddddddddddddddddddddd");
 
-           //     $('#ScannedFiles').val(myfile.toString());
+              $('#ScannedFiles').val(myfile.toString());
 
           //      var actionurl = e.currentTarget.action;
 

@@ -1,4 +1,6 @@
-﻿using Archieve.DatabaseLayer.Models;
+﻿using Archieve.DataAccess.Configuration;
+using Archieve.DatabaseLayer.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -7,9 +9,9 @@ using System.Text;
 
 namespace Archieve.DataAccess.DataConfigration
 {
-    public class DataContext:IdentityDbContext<User>
+    public class DataContext:IdentityDbContext<User,IdentityRole, string>
     {
-
+        public static bool migrate = true;
         public DataContext(DbContextOptions<DataContext> dbContextOptions):base(dbContextOptions)
         {
 
@@ -24,5 +26,14 @@ namespace Archieve.DataAccess.DataConfigration
         public DbSet<Status> Statuses { get; set; }
         public DbSet<WorkPlace> WorkPlaces { get; set; }
         public DbSet<StructureType> StructureTypes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            new MailTypeConfiguration(modelBuilder.Entity<MailType>());
+            new SecurityConfiguration(modelBuilder.Entity<Security>());
+            new ClassificationConfigration(modelBuilder.Entity<Classification>());
+            new PostTypeConfigration(modelBuilder.Entity<PostType>());
+        }
     }
 }

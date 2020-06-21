@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Archieve.DataAccess.Enum;
@@ -11,11 +12,14 @@ using Archieve.Helper;
 using AutoMapper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 //using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore;
+using PdfSharpCore.Drawing;
+using PdfSharpCore.Pdf;
 
 namespace Archieve.Controllers
 {
@@ -146,13 +150,15 @@ namespace Archieve.Controllers
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> saveArchive(MailArchiveVM model)
         {
-            var eArchive = new MailArchiveVM();
+            var eArchive = new MailArchiveVM {
 
-            eArchive.classificationList = classificationService.GetQueryable(c => c.IsDelete == false).GetListItems("ClassificationName", "Id", 0).ToList();
-            eArchive.mailTypeList = mailTypeService.GetQueryable(c => c.IsDelete == false).GetListItems("MailName", "Id", 0).ToList();
-            eArchive.postTypeList = postTypeService.GetQueryable(c => c.IsDelete == false).GetListItems("PostName", "Id", 0).ToList();
-            eArchive.securityList = securityService.GetQueryable(c => c.IsDelete == false).GetListItems("SecurityName", "Id", 0).ToList();
-            eArchive.statusList = statusService.GetQueryable(c => c.IsDelete == false).GetListItems("StatusName", "Id", 0).ToList();
+                classificationList = classificationService.GetQueryable(c => c.IsDelete == false).GetListItems("ClassificationName", "Id", 0).ToList(),
+            mailTypeList = mailTypeService.GetQueryable(c => c.IsDelete == false).GetListItems("MailName", "Id", 0).ToList(),
+            postTypeList = postTypeService.GetQueryable(c => c.IsDelete == false).GetListItems("PostName", "Id", 0).ToList(),
+            securityList = securityService.GetQueryable(c => c.IsDelete == false).GetListItems("SecurityName", "Id", 0).ToList(),
+            statusList = statusService.GetQueryable(c => c.IsDelete == false).GetListItems("StatusName", "Id", 0).ToList(),
+              };
+            model.FK_StatusId = 2; /// هذي انت انسيتها في الفيو
 
             if (model.ID == 0)
             {
@@ -162,30 +168,71 @@ namespace Archieve.Controllers
                     model.InsertDate = DateTime.UtcNow;
                     model.InsertUser = USERNAME;
                     var newModel = mapper.Map<MailArchive>(model);
-                    var result = await mailArchiveService.AddAndLogAsync(newModel, USERNAME);
-                    if (result > 0)
-                    {
-                        return Json(new
-                        {
-                            status = JsonStatus.Success,
-                            link = "جيد",
-                            color = NotificationColor.success.ToString().ToLower(),
-                            msg = "تم الحفظ بنجاح",
-                            ObjectID = newModel.ID
 
-                        });
-                    }
-                    else
-                    {
-                        return Json(new
+                    //try
+                    //{
+
+                        var getByteForFiles = GetStream(model.ScannedFiles.Split(','));
+
+                        ImageArchive imageArchiveVM = new ImageArchive
                         {
-                            status = JsonStatus.Error,
-                            link = "يوجد خطا",
-                            color = NotificationColor.error.ToString().ToLower(),
-                            msg = "يوجد خطا في عملية الحفظ",
-                            ObjectID = newModel.ID,
-                        });
-                    }
+                            Id = 0,
+                            Name = $"{ Guid.NewGuid().ToString()}.PDF",
+                            ContentMail = getByteForFiles,
+                            Extension=".PDF",
+                            Type= "application/pdf"
+                        };
+
+                        // var sssss = ImageArchiveRepositry.Add(imageArchiveVM);
+
+                        // System.IO.File.WriteAllBytes(@"E:\hello.pdf", sssss.ContentMail);
+                      
+                        newModel.imageArchives = new List<ImageArchive> { imageArchiveVM };
+
+
+                        var result = await mailArchiveService.AddAndLogAsync(newModel, USERNAME);
+
+                        if (result > 0)
+                        {
+                            return Json(new
+                            {
+                                status = JsonStatus.Success,
+                                link = "جيد",
+                                color = NotificationColor.success.ToString().ToLower(),
+                                msg = "تم الحفظ بنجاح",
+                                ObjectID = newModel.ID
+
+                            });
+                        }
+                        else
+                        {
+                            return Json(new
+                            {
+                                status = JsonStatus.Error,
+                                link = "يوجد خطا",
+                                color = NotificationColor.error.ToString().ToLower(),
+                                msg = "يوجد خطا في عملية الحفظ",
+                                ObjectID = newModel.ID,
+                            });
+                        }
+
+                    //}
+                    //catch (Exception)
+                    //{
+
+                    //    return Json(new
+                    //    {
+                    //        status = JsonStatus.Error,
+                    //        link = "يوجد خطا",
+                    //        color = NotificationColor.error.ToString().ToLower(),
+                    //        msg = "يوجد خطا في عملية الحفظ",
+                    //        ObjectID = newModel.ID,
+                    //    });
+                    //    throw;
+                    //}
+
+                  
+                  
                 }
                 return Json(new
                 {
@@ -251,5 +298,73 @@ namespace Archieve.Controllers
                                   .Select(m => m.ErrorMessage).ToArray()
             });
         }
+
+        private static byte[] GetStream(string[] imageUrl)
+        {
+            List<Stream> stream = new List<Stream>();
+            byte[] myData = null;
+            try
+            {
+
+                using (var document = new PdfDocument())
+                {
+                    for (var i = 0; i < imageUrl.Length; i++)
+                    {
+
+                        System.Net.HttpWebRequest webRequest = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(imageUrl[i]);
+                        webRequest.AllowWriteStreamBuffering = true;
+                        webRequest.Timeout = 30000;
+
+                        System.Net.WebResponse webResponse = webRequest.GetResponse();
+
+                        using (var stream2 = (Stream)webResponse.GetResponseStream())
+                        {
+                            PdfPage page = document.AddPage();
+
+
+                            using (XImage img = XImage.FromStream(() => stream2))
+                            {
+
+                                // Calculate new height to keep image ratio
+                                var height = (int)(((double)600 / (double)img.PixelWidth) * img.PixelHeight);
+
+                                // Change PDF Page size to match image
+                                page.Width = 600;
+                                page.Height = height;
+
+                                XGraphics gfx = XGraphics.FromPdfPage(page);
+                                gfx.DrawImage(img, 0, 0, 600, height);
+
+                                //myData = ReadFully(stream)
+                                //  image = System.Drawing.Image.FromStream(stream);
+
+                            }
+                        }
+                        webResponse.Close();
+                    }
+                    byte[] docBytes;
+                    using (MemoryStream stream3 = new MemoryStream())
+                    {
+                        // Saves the document as stream
+                        document.Save(stream3);
+                        document.Close();
+                        // Converts the PdfDocument object to byte form.
+                        docBytes = stream3.ToArray();
+                    }
+
+                    return docBytes;
+
+                }
+                //  PdfHelper.SaveImageAsPdf(stream, @"E:\ffffi.pdf");
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+
+
+        }
+
     }
 }

@@ -16,9 +16,9 @@ namespace Archieve.DatabaseLayer.Models
         public int FK_FromJehazId { get; set; }
         public Nullable<int> FK_ToJehazId { get; set; }
 
-        [Column(TypeName = "VARCHAR(4000)")]
+      
         public string Topic { get; set; }
-        [Column(TypeName = "VARCHAR(4000)")]
+     
         public string Note { get; set; }
 
         public Nullable<int> FK_ClassificationId { get; set; }
@@ -42,10 +42,10 @@ namespace Archieve.DatabaseLayer.Models
         [ForeignKey(nameof(FK_StatusId))]
         public Status Status { get; set; }
 
-        [Column(TypeName = "VARCHAR(250)")]
+     
         public string InsertUser { get; set; }
         public DateTime? InsertDate { get; set; }
-        [Column(TypeName = "VARCHAR(250)")]
+     
         public string UpdateUser { get; set; }
         public DateTime? UpdateDate { get; set; }
         public bool IsDelete { get; set; }
@@ -53,8 +53,9 @@ namespace Archieve.DatabaseLayer.Models
 
 
         ///  public HttpPostedFileBase file { get; set; }
-        public string test { get; set; }
+      //  public string test { get; set; }
 
-        public string ScannedFiles { get; set; }
+        public ICollection<ImageArchive> imageArchives { get; set; }
+        /// public string ScannedFiles { get; set; }
     }
 }
