@@ -13,10 +13,11 @@ namespace Archieve.DataAccess.Configuration
         public StatusConfigration(EntityTypeBuilder<Status> entity)
         {
 
-            if (DataContext.migrate)
-                entity.HasData(new Status { Id = 1, StatusName = "دوليddd", IsDelete = false, InsertDate = DateTime.Now, UpdateDate = DateTime.Now });
+            if (DataContext.migrate) { 
+                entity.HasData(new Status { Id = 1, StatusName = "منجر", IsDelete = false, InsertDate = DateTime.Now, UpdateDate = DateTime.Now });
+                entity.HasData(new Status { Id = 2, StatusName = "غير منجر", IsDelete = false, InsertDate = DateTime.Now, UpdateDate = DateTime.Now });
 
-
+     }
 
         }
     }

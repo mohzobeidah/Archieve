@@ -14,10 +14,11 @@ namespace Archieve.DataAccess.Configuration
         public MailTypeConfiguration(EntityTypeBuilder<MailType> entity)
         {
 
-            if (DataContext.migrate)
-                entity.HasData(new MailType {  Id= 1,MailName = "داخي ", IsDelete = false });
+            if (DataContext.migrate) { 
+                entity.HasData(new MailType {  Id= 1,MailName = "داخي", IsDelete = false ,  InsertDate= DateTime.Now , UpdateDate= DateTime.Now });
+                entity.HasData(new MailType { Id = 2, MailName = "خارجي", IsDelete = false, InsertDate = DateTime.Now, UpdateDate = DateTime.Now });
 
-           
+            }
 
         }
 

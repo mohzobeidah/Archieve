@@ -11,7 +11,7 @@ namespace Archieve.DatabaseLayer.Models
     {    [key]
         public int Id { get; set; }
         public string MailName { get; set; }
-        public ICollection<MailArchive> mailArchives { get; set; }
+       public ICollection<MailArchive> mailArchives { get; set; }
 
 
         public string InsertUser { get; set; }
