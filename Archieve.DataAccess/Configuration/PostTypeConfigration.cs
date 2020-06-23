@@ -13,10 +13,10 @@ namespace Archieve.DataAccess.Configuration
         public PostTypeConfigration(EntityTypeBuilder<PostType> entity)
         {
 
-            if (DataContext.migrate)
-                entity.HasData(new PostType { Id = 1, PostName = "دوليddd",  IsDelete = false, InsertDate = DateTime.Now, UpdateDate = DateTime.Now });
-
-
+            if (DataContext.migrate) {
+                entity.HasData(new PostType { Id = 1, PostName = "صادر",  IsDelete = false, InsertDate = DateTime.Now, UpdateDate = DateTime.Now });
+                entity.HasData(new PostType { Id = 2, PostName ="وارد", IsDelete = false, InsertDate = DateTime.Now, UpdateDate = DateTime.Now });
+            }
 
         }
     }

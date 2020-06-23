@@ -4,14 +4,16 @@ using Archieve.DataAccess.DataConfigration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Archieve.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200623095023_NEWSTRUCTURE_23_6_2020")]
+    partial class NEWSTRUCTURE_23_6_2020
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,33 +55,33 @@ namespace Archieve.DataAccess.Migrations
                         {
                             Id = 1,
                             ClassificationName = "ترقين قيد ",
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 197, DateTimeKind.Local).AddTicks(4743),
+                            InsertDate = new DateTime(2020, 6, 23, 12, 50, 22, 321, DateTimeKind.Local).AddTicks(2704),
                             IsDelete = false,
-                            UpdateDate = new DateTime(2020, 6, 23, 13, 1, 12, 197, DateTimeKind.Local).AddTicks(5826)
+                            UpdateDate = new DateTime(2020, 6, 23, 12, 50, 22, 321, DateTimeKind.Local).AddTicks(3392)
                         },
                         new
                         {
                             Id = 2,
                             ClassificationName = " طلب اجازة",
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 197, DateTimeKind.Local).AddTicks(7326),
+                            InsertDate = new DateTime(2020, 6, 23, 12, 50, 22, 321, DateTimeKind.Local).AddTicks(4221),
                             IsDelete = false,
-                            UpdateDate = new DateTime(2020, 6, 23, 13, 1, 12, 197, DateTimeKind.Local).AddTicks(7367)
+                            UpdateDate = new DateTime(2020, 6, 23, 12, 50, 22, 321, DateTimeKind.Local).AddTicks(4248)
                         },
                         new
                         {
                             Id = 3,
                             ClassificationName = " طلب صيانة",
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 197, DateTimeKind.Local).AddTicks(7412),
+                            InsertDate = new DateTime(2020, 6, 23, 12, 50, 22, 321, DateTimeKind.Local).AddTicks(4269),
                             IsDelete = false,
-                            UpdateDate = new DateTime(2020, 6, 23, 13, 1, 12, 197, DateTimeKind.Local).AddTicks(7422)
+                            UpdateDate = new DateTime(2020, 6, 23, 12, 50, 22, 321, DateTimeKind.Local).AddTicks(4274)
                         },
                         new
                         {
                             Id = 4,
                             ClassificationName = " اوامر ادارية",
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 197, DateTimeKind.Local).AddTicks(7434),
+                            InsertDate = new DateTime(2020, 6, 23, 12, 50, 22, 321, DateTimeKind.Local).AddTicks(4281),
                             IsDelete = false,
-                            UpdateDate = new DateTime(2020, 6, 23, 13, 1, 12, 197, DateTimeKind.Local).AddTicks(7440)
+                            UpdateDate = new DateTime(2020, 6, 23, 12, 50, 22, 321, DateTimeKind.Local).AddTicks(4285)
                         });
                 });
 
@@ -281,18 +283,18 @@ namespace Archieve.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 186, DateTimeKind.Local).AddTicks(9613),
+                            InsertDate = new DateTime(2020, 6, 23, 12, 50, 22, 311, DateTimeKind.Local).AddTicks(6518),
                             IsDelete = false,
                             MailName = "داخي",
-                            UpdateDate = new DateTime(2020, 6, 23, 13, 1, 12, 192, DateTimeKind.Local).AddTicks(870)
+                            UpdateDate = new DateTime(2020, 6, 23, 12, 50, 22, 318, DateTimeKind.Local).AddTicks(1049)
                         },
                         new
                         {
                             Id = 2,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 194, DateTimeKind.Local).AddTicks(6991),
+                            InsertDate = new DateTime(2020, 6, 23, 12, 50, 22, 319, DateTimeKind.Local).AddTicks(6721),
                             IsDelete = false,
                             MailName = "خارجي",
-                            UpdateDate = new DateTime(2020, 6, 23, 13, 1, 12, 194, DateTimeKind.Local).AddTicks(7077)
+                            UpdateDate = new DateTime(2020, 6, 23, 12, 50, 22, 319, DateTimeKind.Local).AddTicks(6755)
                         });
                 });
 
@@ -329,18 +331,18 @@ namespace Archieve.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 198, DateTimeKind.Local).AddTicks(7482),
+                            InsertDate = new DateTime(2020, 6, 23, 12, 50, 22, 322, DateTimeKind.Local).AddTicks(628),
                             IsDelete = false,
                             PostName = "صادر",
-                            UpdateDate = new DateTime(2020, 6, 23, 13, 1, 12, 198, DateTimeKind.Local).AddTicks(8548)
+                            UpdateDate = new DateTime(2020, 6, 23, 12, 50, 22, 322, DateTimeKind.Local).AddTicks(1318)
                         },
                         new
                         {
                             Id = 2,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 199, DateTimeKind.Local).AddTicks(63),
+                            InsertDate = new DateTime(2020, 6, 23, 12, 50, 22, 322, DateTimeKind.Local).AddTicks(2149),
                             IsDelete = false,
                             PostName = "وارد",
-                            UpdateDate = new DateTime(2020, 6, 23, 13, 1, 12, 199, DateTimeKind.Local).AddTicks(104)
+                            UpdateDate = new DateTime(2020, 6, 23, 12, 50, 22, 322, DateTimeKind.Local).AddTicks(2175)
                         });
                 });
 
@@ -377,18 +379,18 @@ namespace Archieve.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 195, DateTimeKind.Local).AddTicks(7756),
+                            InsertDate = new DateTime(2020, 6, 23, 12, 50, 22, 320, DateTimeKind.Local).AddTicks(3339),
                             IsDelete = false,
                             SecurityName = "عادي",
-                            UpdateDate = new DateTime(2020, 6, 23, 13, 1, 12, 195, DateTimeKind.Local).AddTicks(8885)
+                            UpdateDate = new DateTime(2020, 6, 23, 12, 50, 22, 320, DateTimeKind.Local).AddTicks(4034)
                         },
                         new
                         {
                             Id = 2,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 196, DateTimeKind.Local).AddTicks(192),
+                            InsertDate = new DateTime(2020, 6, 23, 12, 50, 22, 320, DateTimeKind.Local).AddTicks(4982),
                             IsDelete = false,
                             SecurityName = "سري",
-                            UpdateDate = new DateTime(2020, 6, 23, 13, 1, 12, 196, DateTimeKind.Local).AddTicks(232)
+                            UpdateDate = new DateTime(2020, 6, 23, 12, 50, 22, 320, DateTimeKind.Local).AddTicks(5008)
                         });
                 });
 
@@ -425,18 +427,18 @@ namespace Archieve.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 199, DateTimeKind.Local).AddTicks(9730),
+                            InsertDate = new DateTime(2020, 6, 23, 12, 50, 22, 322, DateTimeKind.Local).AddTicks(8368),
                             IsDelete = false,
                             StatusName = "منجر",
-                            UpdateDate = new DateTime(2020, 6, 23, 13, 1, 12, 200, DateTimeKind.Local).AddTicks(875)
+                            UpdateDate = new DateTime(2020, 6, 23, 12, 50, 22, 322, DateTimeKind.Local).AddTicks(9067)
                         },
                         new
                         {
                             Id = 2,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 200, DateTimeKind.Local).AddTicks(2399),
+                            InsertDate = new DateTime(2020, 6, 23, 12, 50, 22, 322, DateTimeKind.Local).AddTicks(9914),
                             IsDelete = false,
                             StatusName = "غير منجر",
-                            UpdateDate = new DateTime(2020, 6, 23, 13, 1, 12, 200, DateTimeKind.Local).AddTicks(2448)
+                            UpdateDate = new DateTime(2020, 6, 23, 12, 50, 22, 322, DateTimeKind.Local).AddTicks(9939)
                         });
                 });
 
@@ -468,56 +470,6 @@ namespace Archieve.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("StructureTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "الجهاز",
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 204, DateTimeKind.Local).AddTicks(6967),
-                            IsDeleted = false,
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 204, DateTimeKind.Local).AddTicks(8116)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "الادارة",
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 204, DateTimeKind.Local).AddTicks(9606),
-                            IsDeleted = false,
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 204, DateTimeKind.Local).AddTicks(9649)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "دائرة",
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 204, DateTimeKind.Local).AddTicks(9687),
-                            IsDeleted = false,
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 204, DateTimeKind.Local).AddTicks(9697)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "قسم",
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 204, DateTimeKind.Local).AddTicks(9710),
-                            IsDeleted = false,
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 204, DateTimeKind.Local).AddTicks(9717)
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Description = "وحدة",
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 204, DateTimeKind.Local).AddTicks(9729),
-                            IsDeleted = false,
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 204, DateTimeKind.Local).AddTicks(9736)
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Description = "اخرى",
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 204, DateTimeKind.Local).AddTicks(9756),
-                            IsDeleted = false,
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 204, DateTimeKind.Local).AddTicks(9764)
-                        });
                 });
 
             modelBuilder.Entity("Archieve.DatabaseLayer.Models.User", b =>
@@ -621,78 +573,6 @@ namespace Archieve.DataAccess.Migrations
                     b.HasIndex("FK_WpId");
 
                     b.ToTable("WorkPlaces");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FK_WpId = 6,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(6402),
-                            IsDeleted = false,
-                            ParentId = 0,
-                            Text = "عام",
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(7488)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FK_WpId = 1,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(9131),
-                            IsDeleted = false,
-                            ParentId = 1,
-                            Text = "المديرية العامة للعمليات المركزية",
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(9178)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            FK_WpId = 6,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(9425),
-                            IsDeleted = false,
-                            ParentId = 1,
-                            Text = "هئيات خارجية",
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(9439)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            FK_WpId = 2,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(9456),
-                            IsDeleted = false,
-                            ParentId = 2,
-                            Text = "ادارة الاتصالات",
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(9463)
-                        },
-                        new
-                        {
-                            Id = 5,
-                            FK_WpId = 3,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(9475),
-                            IsDeleted = false,
-                            ParentId = 4,
-                            Text = "دائرة نظم المعلومات",
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(9482)
-                        },
-                        new
-                        {
-                            Id = 6,
-                            FK_WpId = 4,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(9505),
-                            IsDeleted = false,
-                            ParentId = 5,
-                            Text = "قسم البرمجة",
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(9512)
-                        },
-                        new
-                        {
-                            Id = 7,
-                            FK_WpId = 2,
-                            InsertDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(9524),
-                            IsDeleted = false,
-                            ParentId = 2,
-                            Text = "ادارة الامداد",
-                            UpdatedDate = new DateTime(2020, 6, 23, 13, 1, 12, 202, DateTimeKind.Local).AddTicks(9531)
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

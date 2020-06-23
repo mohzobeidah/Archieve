@@ -3,6 +3,13 @@
     ViewData["Title"] = "الارشيف الالكتروني";
 }
 
+<style>
+
+    #tblMailArchive_filter{
+        float:left;
+    }
+</style>
+
 <h1>ManageSystem</h1>
 <div class="col-xl-12">
     <!--begin::Card-->
@@ -21,9 +28,9 @@
                     
                           <div class="card">
                                 <div class="card-header">
-                                    <button type="button" id="" class="btn btn-primary" style="float:right;">
+                                    <a asp-action="saveArchive" asp-controller="EArchive" id="" class="btn btn-primary" style="float:right;">
                                         اضافة
-                                    </button>
+                                    </a>
                             
 
                                 </div>
@@ -31,17 +38,15 @@
                                     <table class="table table-hover table-striped" id="tblMailArchive">
                                         <thead>
                                             <tr>
-                                                <th scope="col" width="5%" class="text-center">#</th>
-                                                <th scope="col" width="5%" class="text-center">رقم البريد</th>
+
                                                 <th scope="col" width="5%" class="text-center">رقم البريد</th>
                                                 <th scope="col" width="5%" class="text-center">نوع البريد</th>
                                                 <th scope="col" width="5%" class="text-center">توجيه البريد</th>
                                                 <th scope="col" width="15%" class="text-center">الجهة المرسلة</th>
                                                 <th scope="col" width="15%" class="text-center">الجهة المستقبلة</th>
-                                                <th scope="col" width="10%" class="text-center">التاريخ</th>
                                                 <th scope="col" width="40%" class="text-center">الموضوع</th>
-
-                                                <th scope="col" width="5%" class="text-center">الاعدادات</th>
+                                                <th scope="col" width="10%" class="text-center">التاريخ</th>
+                                                @*<th scope="col" width="5%" class="text-center">الاعدادات</th>*@
 
                                             </tr>
                                         </thead>
@@ -170,60 +175,58 @@
                     },
                     "aoColumns": [
 
-                        {
-                            data: null, render: function (data, type, row, iDisplayIndex) {
-                                return (iDisplayIndex.row + 1);
-                            }, "className": "text-center"
+                        //{
+                        //    //data: null, render: function (data, type, row, iDisplayIndex) {
+                        //    //    return (iDisplayIndex.row + 1);
+                        //    //}, "className": "text-center"
 
-                        },
+                        //},
                         { data: "mailId", "className": "text-center" },
-                        { data: "mailType", "className": "text-center" },
                         { data: "postType", "className": "text-center" },
-                        { data: "classificationType", "className": "text-center" },
-                        { data: "insertdate", "className": "text-center" },
+                        { data: "mailType", "className": "text-center" },
                         { data: "fromJehaz", "className": "text-center" },
                         { data: "toJehaz", "className": "text-center" },
                         { data: "topic", "className": "text-center" },
+                        { data: "insertdate", "className": "text-center" },
+                        //{
+                        //    "className": "text-center", data: null, render: function (data, type, row) {
+                        //        return
+                        //            //'<div class="btn-group"><a href="" data-id="' + data.id + '" class="btn red btn-sm btn-outline deleteBtn  sbold" style="margin-left: 5px;"> <i class="fa fa-trash fa-fw"></i> حذف </a>'
+                        //            //+ '<a href=""" data-id="' + data.id + '" class="btn blue btn-sm btn-outline sbold btnEdit" style="margin-left: 5px;"> <i class="fa fa-edit fa-fw"></i> تعديل</a></div>'
 
-                        {
-                            "className": "text-center", data: null, render: function (data, type, row) {
-                                return
-                                    //'<div class="btn-group"><a href="" data-id="' + data.id + '" class="btn red btn-sm btn-outline deleteBtn  sbold" style="margin-left: 5px;"> <i class="fa fa-trash fa-fw"></i> حذف </a>'
-                                    //+ '<a href=""" data-id="' + data.id + '" class="btn blue btn-sm btn-outline sbold btnEdit" style="margin-left: 5px;"> <i class="fa fa-edit fa-fw"></i> تعديل</a></div>'
+                        //        //////////////////////////////////////////////////
 
-                                //////////////////////////////////////////////////
+                        //            '<div class="input-group mb-3">' +
+                        //            '<div class="input-group-prepend">' +
+                        //            '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action</button>' +
+                        //            '<div class="dropdown-menu">' +
+                        //            '<a data-ajax="true" href=""data-id="' + data.id + '"  data-ajax-method="get" data-ajax-complete="completed" data-ajax-failure ="failure" class="dropdown-item btn btn-outline-info sbold editClassification" title=" Edit/تعديل" ><i class="fa fa-edit fa-fw"></i> Edit</a>' +
+                        //            '<a class="dropdown-item btn red btn-sm btn-outline deleteBtn  sbold" href=""data-id="' + data.id + '" style="margin-left: 5px;"> <i class="fa fa-trash fa-fw"></i> Delete</a>' +
+                        //            '<div class="dropdown-divider"></div>' +
+                        //            '<a class="dropdown-item" href="#">Details</a>' +
+                        //            '</div>' +
+                        //            '</div>' +
+                        //            '</div>'
+                        //        //////////////////////////////////////////////////
+                        //        //return '<div class="btn-group">' +
+                        //        //    '<button type="button" class="btn btn-info btn-flat">Actions</button>' +
+                        //        //    '<button type="button" class="btn btn-info btn-flat dropdown-toggle dropdown-icon" data-toggle="dropdown">' +
+                        //        //    '<span class="sr-only">Toggle Dropdown</span>' +
+                        //        //    ' <div class="dropdown-menu" role="menu">' +
+                        //        //    '<a class="dropdown-item btn btn-info" target="_blank"  href="javascript:void(alert("sssss"))" >Update</a>' +
+                        //        //    ' <a class="dropdown-item" href="#">Delete</a>' +
+                        //        //    ' <a class="dropdown-item" href="#">Details</a>' +
+                        //        //    ' </div>' +
+                        //        //    '</button>' +
+                        //        //    ' </div>'
+                        //        //  return '<a class="btn-group"><a href="/Admin/Product/Details/' + data.id + '" class="btn red btn-sm btn-outline btnActivation sbold" style="margin-left: 5px;" title="عرض تفاصيل"><i class="fa fa-edit fa-address-card-o"></i> عرض تفاصيل </a>'
+                        //        //     + '<a data-ajax="true" data-ajax-method="get" data-ajax-complete="completed" data-ajax-failure ="failure"  class="btn blue btn-sm btn-outline sbold AddProduct" style="margin-left: 5px;" title=" نقل"> <i class="fa fa-edit fa-fw"></i> Add Product</a></div>'
+                        //        //+ '<a href="AddEditUser?UserID=' + data.id + '" class="btn blue btn-sm btn-outline sbold" style="margin-left: 5px;" title=" تعديل"> <i class="fa fa-edit fa-fw"></i> تعديل</a></div>'
+                        //        //+ '<a href=/Quarantine/AddPersonMovement?id=' + data.id + '    data-ajax="true" data-ajax-method="get" data-ajax-complete="completed" data-ajax-failure ="failure"  class="btn blue btn-sm btn-outline sbold" style="margin-left: 5px;" title=" نقل"> <i class="fa fa-edit fa-fw"></i> نقل نزيل</a></div>'
+                        //        // +'<a class="AddProduct"> Add Product</a>'
 
-                                    '<div class="input-group mb-3">' +
-                                    '<div class="input-group-prepend">' +
-                                    '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action</button>' +
-                                    '<div class="dropdown-menu">' +
-                                    '<a data-ajax="true" href=""data-id="' + data.id + '"  data-ajax-method="get" data-ajax-complete="completed" data-ajax-failure ="failure" class="dropdown-item btn btn-outline-info sbold editClassification" title=" Edit/تعديل" ><i class="fa fa-edit fa-fw"></i> Edit</a>' +
-                                    '<a class="dropdown-item btn red btn-sm btn-outline deleteBtn  sbold" href=""data-id="' + data.id + '" style="margin-left: 5px;"> <i class="fa fa-trash fa-fw"></i> Delete</a>' +
-                                    '<div class="dropdown-divider"></div>' +
-                                    '<a class="dropdown-item" href="#">Details</a>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</div>'
-                                //////////////////////////////////////////////////
-                                //return '<div class="btn-group">' +
-                                //    '<button type="button" class="btn btn-info btn-flat">Actions</button>' +
-                                //    '<button type="button" class="btn btn-info btn-flat dropdown-toggle dropdown-icon" data-toggle="dropdown">' +
-                                //    '<span class="sr-only">Toggle Dropdown</span>' +
-                                //    ' <div class="dropdown-menu" role="menu">' +
-                                //    '<a class="dropdown-item btn btn-info" target="_blank"  href="javascript:void(alert("sssss"))" >Update</a>' +
-                                //    ' <a class="dropdown-item" href="#">Delete</a>' +
-                                //    ' <a class="dropdown-item" href="#">Details</a>' +
-                                //    ' </div>' +
-                                //    '</button>' +
-                                //    ' </div>'
-                                //  return '<a class="btn-group"><a href="/Admin/Product/Details/' + data.id + '" class="btn red btn-sm btn-outline btnActivation sbold" style="margin-left: 5px;" title="عرض تفاصيل"><i class="fa fa-edit fa-address-card-o"></i> عرض تفاصيل </a>'
-                                //     + '<a data-ajax="true" data-ajax-method="get" data-ajax-complete="completed" data-ajax-failure ="failure"  class="btn blue btn-sm btn-outline sbold AddProduct" style="margin-left: 5px;" title=" نقل"> <i class="fa fa-edit fa-fw"></i> Add Product</a></div>'
-                                //+ '<a href="AddEditUser?UserID=' + data.id + '" class="btn blue btn-sm btn-outline sbold" style="margin-left: 5px;" title=" تعديل"> <i class="fa fa-edit fa-fw"></i> تعديل</a></div>'
-                                //+ '<a href=/Quarantine/AddPersonMovement?id=' + data.id + '    data-ajax="true" data-ajax-method="get" data-ajax-complete="completed" data-ajax-failure ="failure"  class="btn blue btn-sm btn-outline sbold" style="margin-left: 5px;" title=" نقل"> <i class="fa fa-edit fa-fw"></i> نقل نزيل</a></div>'
-                                // +'<a class="AddProduct"> Add Product</a>'
-
-                            }
-                        }
+                        //    }
+                        //}
 
                     ], "rowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 

@@ -82,11 +82,11 @@ namespace Archieve.Controllers
                 mailId=m.MailId,
                 mailType = m.MailType.MailName,
                 postType = m.PostType.PostName,
-                classificationType = m.Classification.ClassificationName,
-                insertdate = m.InsertDate,
+              //  classificationType = m.Classification.ClassificationName,
+                insertdate = m.InsertDate.Value.ToString("dd/MM/yyy")?? DateTime.Now.AddYears(-40).ToString("dd/MM/yyy"),
                 fromJehaz = m.FK_FromJehazId,
                 toJehaz = m.FK_ToJehazId,
-                topic=m.Topic
+                topic=m.Topic.ToString().Substring(0, 50)+"....."
             });
             return Json(new
             {
@@ -158,7 +158,7 @@ namespace Archieve.Controllers
             securityList = securityService.GetQueryable(c => c.IsDelete == false).GetListItems("SecurityName", "Id", 0).ToList(),
             statusList = statusService.GetQueryable(c => c.IsDelete == false).GetListItems("StatusName", "Id", 0).ToList(),
               };
-            model.FK_StatusId = 2; /// هذي انت انسيتها في الفيو
+            //model.FK_StatusId = 2; /// هذي انت انسيتها في الفيو
 
             if (model.ID == 0)
             {
@@ -302,7 +302,7 @@ namespace Archieve.Controllers
         private static byte[] GetStream(string[] imageUrl)
         {
             List<Stream> stream = new List<Stream>();
-            byte[] myData = null;
+           // byte[] myData = null;
             try
             {
 

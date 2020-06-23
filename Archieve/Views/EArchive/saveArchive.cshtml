@@ -185,14 +185,16 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>الجهة المرسلة</label>
-                                        <input type="text" asp-for="FK_FromJehazId" class="form-control" id="FromJehazId" placeholder="الجهة المستقبلة" />
+                                        <input type="text" asp-for="FK_FromJehazId"   class="form-control" id="FromJehazId" hidden />
+                                        <input type="text" class="form-control" id="FromJehazIdtext" placeholder="الجهة المستقبلة" readonly />
                                         <span class="form-text text-muted"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>الجهة المستقبلة</label>
-                                        <input type="text" asp-for="@Model.FK_ToJehazId" class="form-control" id="ToJehazId" placeholder="الجهة المستقبلة" />
+                                        <input type="text" asp-for="@Model.FK_ToJehazId"  class="form-control" id="ToJehazId" hidden     />
+                                        <input type="text" class="form-control" id="ToJehazIdtext" placeholder="الجهة المستقبلة" readonly />
                                         <span class="form-text text-muted"></span>
                                     </div>
                                 </div>
@@ -284,16 +286,19 @@
 @section Scripts{
     <script>
 
-
+        var chkChoice;
         (function () {
             $(function () {
                 //$("#ToJehazId").hover(handlerIn)
-                $('#FromoJehazId').click(function (e) {
+                $('#FromJehazIdtext').click(function (e) {
+
                     e.stopPropagation();
+                    chkChoice = 1;
                     $('#tree-modal').modal('show');
                 });
-                $('#ToJehazId').click(function (e) {
+                $('#ToJehazIdtext').click(function (e) {
                     e.stopPropagation();
+                    chkChoice = 2;
                     $('#tree-modal').modal('show');
                 });
                 $('.select2').select2({});
@@ -559,9 +564,45 @@
             var tree = $("#AccountTrees").jstree(true);
             console.log("fff", menuObject)
 
+
             return menuObject;
         }
 
 
     </script>
+
+<script>
+
+   
+
+   
+    $('#SaveStructuretree').on('click', function () {
+
+            var idtree= $("#AccountTrees").jstree("get_selected");
+            var textree = $("#AccountTrees").jstree().get_selected(true)[0].text;
+
+        if (idtree != null && idtree != "undefined" && idtree != 1) {
+            if (chkChoice === 1 && idtree != null && idtree != "undefined") {
+
+                $("#FromJehazIdtext").val(textree);
+                $("#FromJehazId").val(idtree);
+                $('#tree-modal').modal('hide');
+
+            }
+            if (chkChoice === 2) {
+
+                $("#ToJehazIdtext").val(textree);
+                $("#ToJehazId").val(idtree);
+                $('#tree-modal').modal('hide');
+            }
+        } else {
+            alert("اختر دائرة صحيحة")
+        }
+
+        });
+
+
+    
+
+</script>
 }
