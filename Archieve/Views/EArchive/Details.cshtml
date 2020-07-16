@@ -1,0 +1,164 @@
+﻿@model Archieve.DataAccess.ViewModel.ImageArchiveObject
+@{
+    ViewBag.Title = "MArchive";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b example example-compact">
+            <div class="card-header">
+                <h3 class="card-title">عرض الارشيف </h3>
+                <div class="card-toolbar">
+                    <div class="example-tools justify-content-center">
+                        <span class="example-toggle" data-toggle="tooltip" title="View code"></span>
+                        <span class="example-copy" data-toggle="tooltip" title="Copy code"></span>
+                    </div>
+                </div>
+            </div>
+            <!--begin::Form-->
+
+            <form>
+
+
+
+                <div class="card-body">
+
+
+
+
+                    <!--begin: Code-->
+                    <!--end: Code-->
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered" id="tblGeneral">
+                        <thead>
+                            <tr>
+                                <th scope="col" width="50%" class="text-center">تفاصيل الكتاب</th>
+                                <th scope="col" width="50%" class="text-center">تحميل الصور</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>رقم البريد</label>
+                                                <p>@Model.MailArchive.MailId</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>نوع البريد</label>
+                                                <p>
+                                                    @Model.MailArchive.MailType.MailName
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>توجيه البريد</label>
+                                            <div class="form-group">
+                                                <p>
+                                                    @Model.MailArchive.PostType.PostName
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>سرية البريد</label>
+                                            <div class="form-group">
+                                                <p>
+                                                    @Model.MailArchive.Security.SecurityName
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>تصنيف البريد</label>
+                                            <div class="form-group">
+                                                <p>@Model.MailArchive.Classification.ClassificationName</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>حالة البريد</label>
+                                            <div class="form-group">
+                                                <p>
+                                                    @Model.MailArchive.Status.StatusName
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>الجهة المرسلة</label>
+                                            <div class="form-group">
+                                                <p>
+                                                    @*@Model.MailArchive.*@
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>الجهة المستقبلة</label>
+                                            <div class="form-group">
+                                                <p>
+                                                    @*@Model.MailArchive.*@
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>التاريخ </label>
+                                            <div class="form-group">
+                                                <p>
+                                                    @Model.MailArchive.InsertDate
+                                                </p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                </td>
+                                
+                            
+                                <td>
+                                    @if (Model.imageArchiveVMs.Count != 0)
+                                    {
+                                        foreach (var item in Model.imageArchiveVMs)
+                                        {
+                                            <p>
+                                                <a href="~/EArchive/GetImage?nameImage=@item.Name">@item.Name</a>
+                                            </p>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                          
+                        </tbody>
+                    </table>
+                </div>
+
+
+          
+
+
+            </form>
+            <!--end::Form-->
+        </div>
+        <!--end::Card-->
+    </div>
+</div>
+@section Scripts{
+    <script>
+        (function () {
+            $(function () {
+            });
+
+
+        })();
+    </script>
+    }

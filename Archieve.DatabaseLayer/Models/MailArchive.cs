@@ -13,14 +13,22 @@ namespace Archieve.DatabaseLayer.Models
         public string MailId { get; set; }
         public string Year { get; set; }
 
+  
         public int FK_FromJehazId { get; set; }
-        public Nullable<int> FK_ToJehazId { get; set; }
+        [NotMapped]
+        [ForeignKey(nameof(FK_FromJehazId))]
+        public virtual WorkPlace FromJehazId { get; set; }
+    
+        public int FK_ToJehazId { get; set; }
+        [NotMapped]
+        [ForeignKey(nameof(FK_ToJehazId))]
+        public virtual WorkPlace ToJehazId { get; set; }
 
-      
         public string Topic { get; set; }
      
         public string Note { get; set; }
 
+        public DateTime? ArchiveDate { get; set; }
         public Nullable<int> FK_ClassificationId { get; set; }
         [ForeignKey(nameof(FK_ClassificationId))]
         public Classification Classification { get; set; }
@@ -30,7 +38,7 @@ namespace Archieve.DatabaseLayer.Models
         [ForeignKey(nameof(FK_MailTypeId))]
         public MailType MailType { get; set; }
 
-        public int FK_SecurityId { get; set; }
+        public Nullable<int> FK_SecurityId { get; set; }
         [ForeignKey(nameof(FK_SecurityId))]
         public Security Security { get; set; }
 
@@ -38,7 +46,7 @@ namespace Archieve.DatabaseLayer.Models
         [ForeignKey(nameof(FK_PostTypeId))]
         public PostType PostType { get; set; }
 
-        public int FK_StatusId { get; set; }
+        public Nullable<int> FK_StatusId { get; set; }
         [ForeignKey(nameof(FK_StatusId))]
         public Status Status { get; set; }
 
@@ -50,6 +58,9 @@ namespace Archieve.DatabaseLayer.Models
         public DateTime? UpdateDate { get; set; }
         public bool IsDelete { get; set; }
 
+        public int FK_User { get; set; }
+        [ForeignKey(nameof(FK_User))]
+        public virtual User user { get; set; }
 
 
         ///  public HttpPostedFileBase file { get; set; }

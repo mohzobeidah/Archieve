@@ -20,7 +20,10 @@ namespace Archieve.DatabaseLayer.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
 
-     
+        public ICollection<MailArchive> mailArchives   { get; set; }
+
+        public ICollection<MailArchive> mailArchivesto { get; set; }
+
 
     }
 }

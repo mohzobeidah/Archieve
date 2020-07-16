@@ -23,7 +23,8 @@ namespace Archieve.Servcies
             services.AddScoped<IStatusService, StatusService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IWorkPlaceService, WorkPlaceService>();
-            services.AddScoped<IMailArchiveService, MailArchiveService>();
+            services.AddScoped<IMailArchiveService, MailArchiveService>(); 
+            services.AddScoped<IImageArchiveService, ImageArchiveService>();
         }
     }
 }

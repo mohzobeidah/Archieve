@@ -7,6 +7,9 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.Threading;
+using Microsoft.AspNetCore.Routing;
 
 namespace Archieve.DataAccess.Repository
 {
@@ -17,9 +20,18 @@ namespace Archieve.DataAccess.Repository
                     
         }
 
-        public IQueryable<MailArchive> getMailArchiveById(int id)
+        public async Task<MailArchive> getMailArchiveById(int? id , CancellationToken ct = default(CancellationToken))
         {
-            var mailArchive = GetQueryable(m =>m.IsDelete==false && m.ID == id);
+
+            var mailArchive = await GetQueryable(m => m.ID == id)                       
+                                                                 .Include(x=>x.MailType)
+                                                                 .Include(x => x.PostType)
+                                                                 .Include(x => x.Status)
+                                                                 .Include(x => x.Security)
+                                                                 .Include(x => x.Classification)
+
+                                                                 .FirstOrDefaultAsync(ct);
+
             return mailArchive;
         }
 

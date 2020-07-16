@@ -36,6 +36,8 @@ namespace Archieve.Controllers
         private readonly IPostTypeService postTypeService;
         private readonly ISecurityService securityService;
         private readonly IStatusService statusService;
+        private readonly IImageArchiveService imageArchiveService;
+
         //private readonly ILogger logger;
 
         public EArchiveController(IHttpContextAccessor accessor,
@@ -46,7 +48,8 @@ namespace Archieve.Controllers
                                  IMailTypeService mailTypeService,
                                  IPostTypeService postTypeService,
                                  ISecurityService securityService,
-                                 IStatusService statusService
+                                 IStatusService statusService,
+                                 IImageArchiveService imageArchiveService
                                  //ILogger logger
             ) : base(accessor)
         {
@@ -59,6 +62,7 @@ namespace Archieve.Controllers
             this.postTypeService = postTypeService;
             this.securityService = securityService;
             this.statusService = statusService;
+            this.imageArchiveService = imageArchiveService;
             //this.logger = logger;
         }
 
@@ -122,8 +126,8 @@ namespace Archieve.Controllers
             }
             else
             {
-              var getMailArchive = mailArchiveService.getMailArchiveById(id);
-                var mailArchive = getMailArchive.FirstOrDefault();
+           
+                var mailArchive = mailArchiveService.getMailArchiveById(id);
                 var mailArchivevm = mapper.Map<MailArchiveVM>(mailArchive);
 
                 mailArchivevm.classificationList = await classificationService.GetQueryable(c => c.IsDelete == false).Select(x => new SelectListItem
@@ -144,8 +148,8 @@ namespace Archieve.Controllers
 
                 return View(mailArchivevm);
             }
-            
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> saveArchive(MailArchiveVM model)
@@ -167,6 +171,7 @@ namespace Archieve.Controllers
                 {
                     model.InsertDate = DateTime.UtcNow;
                     model.InsertUser = USERNAME;
+                    model.Year =DateTime.UtcNow.Year.ToString();
                     var newModel = mapper.Map<MailArchive>(model);
 
                     //try
@@ -184,12 +189,9 @@ namespace Archieve.Controllers
                         };
 
                         // var sssss = ImageArchiveRepositry.Add(imageArchiveVM);
-
                         // System.IO.File.WriteAllBytes(@"E:\hello.pdf", sssss.ContentMail);
                       
                         newModel.imageArchives = new List<ImageArchive> { imageArchiveVM };
-
-
                         var result = await mailArchiveService.AddAndLogAsync(newModel, USERNAME);
 
                         if (result > 0)
@@ -201,7 +203,6 @@ namespace Archieve.Controllers
                                 color = NotificationColor.success.ToString().ToLower(),
                                 msg = "تم الحفظ بنجاح",
                                 ObjectID = newModel.ID
-
                             });
                         }
                         else
@@ -215,7 +216,6 @@ namespace Archieve.Controllers
                                 ObjectID = newModel.ID,
                             });
                         }
-
                     //}
                     //catch (Exception)
                     //{
@@ -231,8 +231,6 @@ namespace Archieve.Controllers
                     //    throw;
                     //}
 
-                  
-                  
                 }
                 return Json(new
                 {
@@ -247,7 +245,6 @@ namespace Archieve.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
                     var getMailArchiveById = await mailArchiveService.GetAsync(m => m.ID == model.ID);
                     var firstMailArchive= getMailArchiveById.FirstOrDefault();
 
@@ -298,11 +295,101 @@ namespace Archieve.Controllers
                                   .Select(m => m.ErrorMessage).ToArray()
             });
         }
+        
+         public async Task<IActionResult> GetImage( string nameImage)
+         {
+            if (nameImage!=null)
+            {
+                var newImageArchive = await imageArchiveService.getImageArchiveByName(nameImage);
+                //var stream = new FileStream(@$"c:\{nameImage}", FileMode.Open);
+              
+                return File(newImageArchive.ContentMail, newImageArchive.Type, newImageArchive.Name);
+
+                //System.IO.File.WriteAllBytes(@$"{nameImage}.pdf", newImageArchive.ContentMail);
+                //return newImageArchive;
+            }
+           
+                return NotFound();
+            
+        }
+        //public FileStreamResult Download(int id)
+        //{
+        //    var fileDescription = _fileRepository.GetFileDescription(id);
+
+        //    var path = _optionsApplicationConfiguration.Value.ServerUploadFolder + "\\" + fileDescription.FileName;
+        //    var stream = new FileStream(path, FileMode.Open);
+        //    return File(stream, fileDescription.ContentType);
+        //}
+        //private static byte[] GetStream1(byte[] newImage)
+        //{
+        //    List<Stream> stream = new List<Stream>();
+        //    // byte[] myData = null;
+        //    try
+        //    {
+        //        using (var document = new PdfDocument())
+        //        {
+        //            for (var i = 0; i < newImage.Length; i++)
+        //            {
+
+        //                System.Net.HttpWebRequest webRequest = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(newImage[i]);
+        //                webRequest.AllowWriteStreamBuffering = true;
+        //                webRequest.Timeout = 30000;
+
+        //                System.Net.WebResponse webResponse = webRequest.GetResponse();
+
+        //                using (var stream2 = (Stream)webResponse.GetResponseStream())
+        //                {
+        //                    PdfPage page = document.AddPage();
+
+
+        //                    using (XImage img = XImage.FromStream(() => stream2))
+        //                    {
+
+        //                        // Calculate new height to keep image ratio
+        //                        var height = (int)(((double)600 / (double)img.PixelWidth) * img.PixelHeight);
+
+        //                        // Change PDF Page size to match image
+        //                        page.Width = 600;
+        //                        page.Height = height;
+
+        //                        XGraphics gfx = XGraphics.FromPdfPage(page);
+        //                        gfx.DrawImage(img, 0, 0, 600, height);
+
+        //                        //myData = ReadFully(stream)
+        //                        //  image = System.Drawing.Image.FromStream(stream);
+
+        //                    }
+        //                }
+        //                webResponse.Close();
+        //            }
+        //            byte[] docBytes;
+        //            using (MemoryStream stream3 = new MemoryStream())
+        //            {
+        //                // Saves the document as stream
+        //                document.Save(stream3);
+        //                document.Close();
+        //                // Converts the PdfDocument object to byte form.
+        //                docBytes = stream3.ToArray();
+        //            }
+
+        //            return docBytes;
+
+        //        }
+        //        //  PdfHelper.SaveImageAsPdf(stream, @"E:\ffffi.pdf");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+
+
+
+        //}
 
         private static byte[] GetStream(string[] imageUrl)
-        {
-            List<Stream> stream = new List<Stream>();
-           // byte[] myData = null;
+            {
+             List<Stream> stream = new List<Stream>();
+             // byte[] myData = null;
             try
             {
 
@@ -366,5 +453,26 @@ namespace Archieve.Controllers
 
         }
 
+        public async Task<IActionResult> Details(int? id)
+        
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+           var newMailArchieve =  await mailArchiveService.getMailArchiveById(id);
+            
+            var newImageArchive =  await imageArchiveService.getImageArchiveById(id);
+            // await Task.WhenAll(newMailArchieve, newImageArchive);
+
+            var imageArchiveObject = new ImageArchiveObject
+            {
+                MailArchive = newMailArchieve,
+                imageArchiveVMs = newImageArchive.Select(x => new ImageNew { Id = x.Id, Name = x.Name }).ToList(),
+            };
+            return View(imageArchiveObject);
+        }
     }
 }
