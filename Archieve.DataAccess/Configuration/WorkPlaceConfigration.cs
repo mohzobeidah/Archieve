@@ -11,6 +11,10 @@ namespace Archieve.DataAccess.Configuration
     {
         public WorkPlaceConfigration(EntityTypeBuilder<WorkPlace> entity)
         {
+
+
+         
+
             if (DataContext.migrate)
             {
                 entity.HasData(new WorkPlace { Id = 1, Text = "عام", ParentId = 0, FK_WpId=6, IsDeleted = false, InsertDate = DateTime.Now, UpdatedDate = DateTime.Now });

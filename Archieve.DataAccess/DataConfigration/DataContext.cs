@@ -37,6 +37,7 @@ namespace Archieve.DataAccess.DataConfigration
             new StatusConfigration(modelBuilder.Entity<Status>());
             new WorkPlaceConfigration(modelBuilder.Entity<WorkPlace>());
             new StructureTypeConfigration(modelBuilder.Entity<StructureType>());
+            new MailArchiveConfigration(modelBuilder.Entity<MailArchive>());
 
         }
     }

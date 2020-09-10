@@ -3,7 +3,6 @@
     ViewData["Title"] = "ثوابت النظام";
 }
 
-<h1>ManageSystem</h1>
 <div class="col-xl-12">
     <!--begin::Card-->
     <div class="card card-custom gutter-b">
@@ -174,7 +173,7 @@
             $('#SearchName').click(function () {
                 BindDataTable.ajax.reload();
             });
-            var BindDataTable = function (url) {
+            var BindDataTable = function (url, ColName) {
                 table.DataTable({
                     "destroy": true,
                     "bServerSide": true,
@@ -232,7 +231,7 @@
 
                         },
 
-                        { data: "gname", "className": "text-center" },
+                        { data: ColName , "className": "text-center" },
 
                         //{
                         //    data: null, render: function (data, type, row) {
@@ -430,13 +429,13 @@
             });
             //end delete btn
             $('#atab_1').click(function () {
-                BindDataTable("/Archive/getClassification");
+                BindDataTable("/Archive/getClassification", "gname");
             });
             $('#atab_2').click(function () {
-                BindDataTable("/Archive/getMailType");
+                BindDataTable("/Archive/getMailType", "mailName");
             });
             $('#atab_3').click(function () {
-                BindDataTable("/Archive/getPostType");
+                BindDataTable("/Archive/getPostType","postName");
             });
             $('#atab_4').click(function () {
                 BindDataTable("/Archive/getSecurity");

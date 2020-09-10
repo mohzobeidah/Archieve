@@ -35,7 +35,7 @@ namespace Archieve
             
             
             services.AddDbContext<DataContext>(options =>
-             options.UseSqlServer(
+                options.UseSqlServer(
             Configuration.GetConnectionString("DefaultConnection")));
          services.AddIdentity<User, IdentityRole>()
         .AddEntityFrameworkStores<DataContext>()

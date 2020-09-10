@@ -414,12 +414,11 @@
                 //prevent Default functionality
                 e.preventDefault();
                 alert("dddddddddddddddddddddddddddd");
+                //var imgs = document.querySelector('.imgforServer');
+               
+               
 
-              $('#ScannedFiles').val(myfile.toString());
-
-          //      var actionurl = e.currentTarget.action;
-
-                //do your own request an handle the results
+                $('#ScannedFiles').val(ConvertImgTobase64String().join('|'));
                 $.ajax({
                     url: "/EArchive/saveArchive/",
                     type: 'post',
@@ -427,12 +426,36 @@
                     data:
                         $("#saveArchive").serialize(),
                     success: function (data) {
-                        //  ... do something with the data...
+                      
+                            swal.fire(data.status,data.msg);
+                     
                     }
                 });
             });
         });
 
+        function ConvertImgTobase64String() {
+            var arr = [];
+            var imgs = $('.imgforServer');
+          
+            $.each(imgs, function (key, img) {
+                var canvas = document.createElement('canvas');
+                var context = canvas.getContext('2d');
+
+                canvas.height = img.naturalHeight;
+                canvas.width = img.naturalWidth;
+                context.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+                base64Img = canvas.toDataURL();
+                arr.push(base64Img);
+                
+
+            });
+
+            console.log(arr)
+           
+            return arr;
+
+        }
         /////////////////////////////////////////////////////////////////
         $(function () {
 

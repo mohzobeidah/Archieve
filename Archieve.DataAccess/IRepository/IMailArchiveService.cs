@@ -16,7 +16,7 @@ namespace Archieve.DataAccess.IRepository
         Task<MailArchive> getMailArchiveById(int? id, CancellationToken ct = default(CancellationToken));
         //public async Task<Classification> deleteClassifiction(int? id, string username);
 
-        // public Classification delClassifiction(int id);
+        Task<bool> CheckIfArchivceNumberExist(string name);
     }
      
 }

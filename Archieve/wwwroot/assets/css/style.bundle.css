@@ -1,3 +1,8 @@
+﻿@font-face {
+	font-family: Changa-VariableFont_wght;
+	src: url('../../Font/Changa-VariableFont_wght.ttf') format('truetype');
+}
+
 @charset "UTF-8";
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
@@ -5,6 +10,9 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -35,8 +43,11 @@
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
   --breakpoint-xxl: 1400px;
+  /*
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; 
+*/
+}
 
 *,
 *::before,
@@ -45,23 +56,25 @@
   box-sizing: border-box; }
 
 html {
-  font-family: sans-serif;
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+    font-family: Changa-VariableFont_wght;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
-  margin: 0;
-  font-family: Poppins, Helvetica, "sans-serif";
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #464E5F;
-  text-align: left;
-  background-color: #ffffff; }
+    margin: 0;
+    font-family: Changa-VariableFont_wght;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #464E5F;
+    text-align: left;
+    background-color: #ffffff;
+}
 
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important; }

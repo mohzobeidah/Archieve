@@ -1,3 +1,12 @@
+﻿@font-face {
+	font-family: Changa-VariableFont_wght;
+	src: url('../../Font/Changa-VariableFont_wght.ttf') format('truetype');
+}
+
+
+
+
+
 @charset "UTF-8";
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
@@ -54,14 +63,15 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
-  margin: 0;
-  font-family: Poppins, Helvetica, "sans-serif";
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #464E5F;
-  text-align: right;
-  background-color: #ffffff; }
+    margin: 0;
+    font-family: Changa-VariableFont_wght,Poppins, Helvetica, "sans-serif";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #464E5F;
+    text-align: right;
+    background-color: #ffffff;
+}
 
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important; }
@@ -43297,7 +43307,7 @@ code {
 
 .form-group label {
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 600;
   color: #464E5F; }
 
 .form-group .invalid-feedback,
@@ -58022,24 +58032,26 @@ body.swal2-height-auto {
 
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: sans-serif;
-  -moz-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+    font-family: Changa-VariableFont_wght, sans-serif;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 
 html,
 body {
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
-  font-size: 13px !important;
-  font-weight: 400;
-  font-family: Poppins, Helvetica, "sans-serif";
-  -ms-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-size: 13px !important;
+    font-weight: 600;
+    font-family: Changa-VariableFont_wght,Poppins, Helvetica, "sans-serif";
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
   @media (max-width: 1199.98px) {
     html,
     body {
@@ -58561,7 +58573,7 @@ body {
             height: 1px; }
         .header-menu .menu-nav > .menu-item > .menu-link .menu-text {
           font-weight: 400;
-          font-size: 1rem;
+          font-size: 1.3rem;
           text-transform: initial; }
         .header-menu .menu-nav > .menu-item > .menu-link .menu-label {
           padding: 0px 5px 0px 0px; }
@@ -59879,7 +59891,7 @@ body {
         padding: 0.75rem 1.25rem; }
         .header-menu .menu-nav > .menu-item > .menu-link .menu-text {
           color: #ffffff;
-          font-weight: 500; }
+          font-weight: 600; }
         .header-menu .menu-nav > .menu-item > .menu-link .menu-arrow {
           color: rgba(255, 255, 255, 0.8); }
         .header-menu .menu-nav > .menu-item > .menu-link .menu-icon i {

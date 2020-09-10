@@ -8,6 +8,7 @@ namespace Archieve.DatabaseLayer.Models
 {
    public class WorkPlace
     {
+        [key]
         public int Id { get; set; }
         public Nullable<int> ParentId { get; set; }
         public string Text { get; set; }
@@ -20,9 +21,16 @@ namespace Archieve.DatabaseLayer.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
 
-        public ICollection<MailArchive> mailArchives   { get; set; }
+        
+        [InverseProperty("FromJehazId")]
+        public ICollection<MailArchive> mailArchivesFrom   { get; set; }
 
-        public ICollection<MailArchive> mailArchivesto { get; set; }
+        [InverseProperty("ToJehazId")]
+        public ICollection<MailArchive> mailArchivesTo { get; set; }
+
+ 
+        public ICollection<User> Users { get; set; }
+
 
 
     }

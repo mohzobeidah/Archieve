@@ -59,8 +59,9 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>توجيه البريد</label>
+                                            
                                             <div class="form-group">
+                                                <label>توجيه البريد</label>
                                                 <p>
                                                     @Model.MailArchive.PostType.PostName
                                                 </p>
@@ -69,22 +70,25 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>سرية البريد</label>
+                                            
                                             <div class="form-group">
+                                                <label>سرية البريد</label>
                                                 <p>
                                                     @Model.MailArchive.Security.SecurityName
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>تصنيف البريد</label>
+                                           
                                             <div class="form-group">
+                                                <label>تصنيف البريد</label>
                                                 <p>@Model.MailArchive.Classification.ClassificationName</p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>حالة البريد</label>
+                                         
                                             <div class="form-group">
+                                                <label>حالة البريد</label>
                                                 <p>
                                                     @Model.MailArchive.Status.StatusName
                                                 </p>
@@ -94,16 +98,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label>الجهة المرسلة</label>
+                                          
                                             <div class="form-group">
+                                                <label>الجهة المرسلة</label>
                                                 <p>
                                                     @*@Model.MailArchive.*@
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label>الجهة المستقبلة</label>
+                                         
                                             <div class="form-group">
+                                                <label>الجهة المستقبلة</label>
                                                 <p>
                                                     @*@Model.MailArchive.*@
                                                 </p>
@@ -112,8 +118,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label>التاريخ </label>
                                             <div class="form-group">
+
+
+                                                <label> تاريخ الارشيف</label>
                                                 <p>
                                                     @Model.MailArchive.InsertDate
                                                 </p>
@@ -126,15 +134,18 @@
                                 
                             
                                 <td>
-                                    @if (Model.imageArchiveVMs.Count != 0)
-                                    {
-                                        foreach (var item in Model.imageArchiveVMs)
+                                    @{
+                                        int x = 0;
+                                        if (Model.imageArchiveVMs.Count != 0)
                                         {
-                                            <p>
-                                                <a href="~/EArchive/GetImage?nameImage=@item.Name">@item.Name</a>
-                                            </p>
+                                            foreach (var item in Model.imageArchiveVMs)
+                                            {
+                                                <p>
+                                                    <span>@(++x) &nbsp;-</span> &nbsp;   <a href="~/EArchive/GetImage?nameImage=@item.Name">@item.Name</a>
+                                                </p>
+                                                }
+                                            }
                                         }
-                                    }
                                 </td>
                             </tr>
                           

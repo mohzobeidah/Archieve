@@ -20,6 +20,13 @@ namespace Archieve.DataAccess.Repository
                     
         }
 
+        public async Task<bool> CheckIfArchivceNumberExist(string name)
+        {
+            if (!string.IsNullOrEmpty(name))
+            return await GetQueryable(m => m.MailId == name.Trim()).AnyAsync();
+            return false;
+        }
+
         public async Task<MailArchive> getMailArchiveById(int? id , CancellationToken ct = default(CancellationToken))
         {
 
@@ -53,8 +60,11 @@ namespace Archieve.DataAccess.Repository
              totalRecord = GetQueryable(c => c.IsDelete == false).Count();
             if (!string.IsNullOrEmpty(filter))
             {
-                data= data.Where(c => c.Topic.ToLower().Contains(filter.ToLower()));
+                data = data.Where(c => c.Topic.ToLower()
+                 .Contains(filter.ToLower()));
             }
+            data=data.Include(x => x.Security).Include(x => x.user).Include(x => x.FromJehazId)
+                .Include(x => x.ToJehazId).Include(y=>y.PostType).Include(x=>x.Status).Include(f=>f.MailType).Include(o=>o.Classification); 
             recordsFilter = data.Count();
             var fullData = data.OrderByDescending(x => x.InsertDate)
                             .Skip(initalPage).Take(pageSize);

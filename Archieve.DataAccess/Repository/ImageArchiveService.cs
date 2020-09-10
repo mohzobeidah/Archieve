@@ -27,6 +27,7 @@ namespace Archieve.DataAccess.Repository
         public async Task<ImageArchive> getImageArchiveByName(string name)
         {
             var ImageArchive = await GetQueryable(m => m.Name == name).FirstOrDefaultAsync();
+            
             return ImageArchive;
         }
 
