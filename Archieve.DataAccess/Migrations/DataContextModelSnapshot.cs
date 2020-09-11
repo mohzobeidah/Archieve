@@ -35,14 +35,14 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("InsertUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("UpdateUser")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -53,33 +53,33 @@ namespace Archieve.DataAccess.Migrations
                         {
                             Id = 1,
                             ClassificationName = "ترقين قيد ",
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 742, DateTimeKind.Local).AddTicks(6664),
-                            IsDelete = false,
-                            UpdateDate = new DateTime(2020, 9, 7, 22, 56, 31, 742, DateTimeKind.Local).AddTicks(7308)
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 551, DateTimeKind.Local).AddTicks(7780),
+                            IsDeleted = false,
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 551, DateTimeKind.Local).AddTicks(8495)
                         },
                         new
                         {
                             Id = 2,
                             ClassificationName = " طلب اجازة",
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 742, DateTimeKind.Local).AddTicks(8179),
-                            IsDelete = false,
-                            UpdateDate = new DateTime(2020, 9, 7, 22, 56, 31, 742, DateTimeKind.Local).AddTicks(8212)
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 551, DateTimeKind.Local).AddTicks(9343),
+                            IsDeleted = false,
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 551, DateTimeKind.Local).AddTicks(9366)
                         },
                         new
                         {
                             Id = 3,
                             ClassificationName = " طلب صيانة",
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 742, DateTimeKind.Local).AddTicks(8241),
-                            IsDelete = false,
-                            UpdateDate = new DateTime(2020, 9, 7, 22, 56, 31, 742, DateTimeKind.Local).AddTicks(8249)
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 551, DateTimeKind.Local).AddTicks(9384),
+                            IsDeleted = false,
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 551, DateTimeKind.Local).AddTicks(9389)
                         },
                         new
                         {
                             Id = 4,
                             ClassificationName = " اوامر ادارية",
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 742, DateTimeKind.Local).AddTicks(8262),
-                            IsDelete = false,
-                            UpdateDate = new DateTime(2020, 9, 7, 22, 56, 31, 742, DateTimeKind.Local).AddTicks(8269)
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 551, DateTimeKind.Local).AddTicks(9396),
+                            IsDeleted = false,
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 551, DateTimeKind.Local).AddTicks(9400)
                         });
                 });
 
@@ -105,7 +105,7 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("InsertUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("LName")
@@ -117,11 +117,11 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("ThName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("UpdateUser")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("EmpId");
 
@@ -150,7 +150,7 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("InsertUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -165,11 +165,11 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("UpdateUser")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -191,7 +191,7 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<int?>("FK_ClassificationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FK_FromJehazId")
+                    b.Property<int?>("FK_FromJehazId")
                         .HasColumnType("int");
 
                     b.Property<int?>("FK_MailTypeId")
@@ -206,7 +206,7 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<int>("FK_StatusId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FK_ToJehazId")
+                    b.Property<int?>("FK_ToJehazId")
                         .HasColumnType("int");
 
                     b.Property<string>("FK_User")
@@ -218,7 +218,7 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("InsertUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("MailId")
@@ -230,11 +230,14 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("Topic")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("UpdateUser")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserWorkPlaceID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Year")
                         .HasColumnType("nvarchar(max)");
@@ -257,6 +260,8 @@ namespace Archieve.DataAccess.Migrations
 
                     b.HasIndex("FK_User");
 
+                    b.HasIndex("UserWorkPlaceID");
+
                     b.ToTable("MailArchives");
                 });
 
@@ -273,17 +278,17 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("InsertUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("MailName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("UpdateUser")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -293,19 +298,56 @@ namespace Archieve.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 734, DateTimeKind.Local).AddTicks(5072),
-                            IsDelete = false,
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 548, DateTimeKind.Local).AddTicks(859),
+                            IsDeleted = false,
                             MailName = "داخي",
-                            UpdateDate = new DateTime(2020, 9, 7, 22, 56, 31, 738, DateTimeKind.Local).AddTicks(4803)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 548, DateTimeKind.Local).AddTicks(1635)
                         },
                         new
                         {
                             Id = 2,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 740, DateTimeKind.Local).AddTicks(9602),
-                            IsDelete = false,
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 550, DateTimeKind.Local).AddTicks(200),
+                            IsDeleted = false,
                             MailName = "خارجي",
-                            UpdateDate = new DateTime(2020, 9, 7, 22, 56, 31, 740, DateTimeKind.Local).AddTicks(9668)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 550, DateTimeKind.Local).AddTicks(213)
                         });
+                });
+
+            modelBuilder.Entity("Archieve.DatabaseLayer.Models.MangerDepartment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsertUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UpdateUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("WorkPlaceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("WorkPlaceId");
+
+                    b.ToTable("MangerDepartment");
                 });
 
             modelBuilder.Entity("Archieve.DatabaseLayer.Models.PostType", b =>
@@ -321,17 +363,17 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("InsertUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("PostName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("UpdateUser")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -341,18 +383,18 @@ namespace Archieve.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 743, DateTimeKind.Local).AddTicks(5625),
-                            IsDelete = false,
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 552, DateTimeKind.Local).AddTicks(4996),
+                            IsDeleted = false,
                             PostName = "صادر",
-                            UpdateDate = new DateTime(2020, 9, 7, 22, 56, 31, 743, DateTimeKind.Local).AddTicks(6236)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 552, DateTimeKind.Local).AddTicks(5016)
                         },
                         new
                         {
                             Id = 2,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 743, DateTimeKind.Local).AddTicks(7055),
-                            IsDelete = false,
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 552, DateTimeKind.Local).AddTicks(5223),
+                            IsDeleted = false,
                             PostName = "وارد",
-                            UpdateDate = new DateTime(2020, 9, 7, 22, 56, 31, 743, DateTimeKind.Local).AddTicks(7089)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 552, DateTimeKind.Local).AddTicks(5227)
                         });
                 });
 
@@ -369,17 +411,17 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("InsertUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("SecurityName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("UpdateUser")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -389,18 +431,18 @@ namespace Archieve.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 741, DateTimeKind.Local).AddTicks(5037),
-                            IsDelete = false,
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 550, DateTimeKind.Local).AddTicks(6663),
+                            IsDeleted = false,
                             SecurityName = "عادي",
-                            UpdateDate = new DateTime(2020, 9, 7, 22, 56, 31, 741, DateTimeKind.Local).AddTicks(5511)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 550, DateTimeKind.Local).AddTicks(6679)
                         },
                         new
                         {
                             Id = 2,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 741, DateTimeKind.Local).AddTicks(6149),
-                            IsDelete = false,
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 550, DateTimeKind.Local).AddTicks(6910),
+                            IsDeleted = false,
                             SecurityName = "سري",
-                            UpdateDate = new DateTime(2020, 9, 7, 22, 56, 31, 741, DateTimeKind.Local).AddTicks(6174)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 550, DateTimeKind.Local).AddTicks(6914)
                         });
                 });
 
@@ -417,17 +459,17 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("InsertUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("StatusName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("UpdateUser")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -437,18 +479,18 @@ namespace Archieve.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 744, DateTimeKind.Local).AddTicks(4098),
-                            IsDelete = false,
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 553, DateTimeKind.Local).AddTicks(770),
+                            IsDeleted = false,
                             StatusName = "منجر",
-                            UpdateDate = new DateTime(2020, 9, 7, 22, 56, 31, 744, DateTimeKind.Local).AddTicks(4953)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 553, DateTimeKind.Local).AddTicks(787)
                         },
                         new
                         {
                             Id = 2,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 744, DateTimeKind.Local).AddTicks(6034),
-                            IsDelete = false,
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 553, DateTimeKind.Local).AddTicks(995),
+                            IsDeleted = false,
                             StatusName = "غير منجر",
-                            UpdateDate = new DateTime(2020, 9, 7, 22, 56, 31, 744, DateTimeKind.Local).AddTicks(6073)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 553, DateTimeKind.Local).AddTicks(999)
                         });
                 });
 
@@ -468,14 +510,14 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("InsertUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("UpdateUser")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedUser")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -486,49 +528,49 @@ namespace Archieve.DataAccess.Migrations
                         {
                             Id = 1,
                             Description = "الجهاز",
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 748, DateTimeKind.Local).AddTicks(2831),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 555, DateTimeKind.Local).AddTicks(2778),
                             IsDeleted = false,
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 748, DateTimeKind.Local).AddTicks(3507)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 555, DateTimeKind.Local).AddTicks(2796)
                         },
                         new
                         {
                             Id = 2,
                             Description = "الادارة",
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 748, DateTimeKind.Local).AddTicks(4574),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 555, DateTimeKind.Local).AddTicks(3012),
                             IsDeleted = false,
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 748, DateTimeKind.Local).AddTicks(4611)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 555, DateTimeKind.Local).AddTicks(3017)
                         },
                         new
                         {
                             Id = 3,
                             Description = "دائرة",
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 748, DateTimeKind.Local).AddTicks(4643),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 555, DateTimeKind.Local).AddTicks(3031),
                             IsDeleted = false,
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 748, DateTimeKind.Local).AddTicks(4651)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 555, DateTimeKind.Local).AddTicks(3035)
                         },
                         new
                         {
                             Id = 4,
                             Description = "قسم",
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 748, DateTimeKind.Local).AddTicks(4663),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 555, DateTimeKind.Local).AddTicks(3046),
                             IsDeleted = false,
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 748, DateTimeKind.Local).AddTicks(4671)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 555, DateTimeKind.Local).AddTicks(3050)
                         },
                         new
                         {
                             Id = 5,
                             Description = "وحدة",
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 748, DateTimeKind.Local).AddTicks(4683),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 555, DateTimeKind.Local).AddTicks(3060),
                             IsDeleted = false,
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 748, DateTimeKind.Local).AddTicks(4691)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 555, DateTimeKind.Local).AddTicks(3064)
                         },
                         new
                         {
                             Id = 6,
                             Description = "اخرى",
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 748, DateTimeKind.Local).AddTicks(4711),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 555, DateTimeKind.Local).AddTicks(3079),
                             IsDeleted = false,
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 748, DateTimeKind.Local).AddTicks(4719)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 555, DateTimeKind.Local).AddTicks(3082)
                         });
                 });
 
@@ -554,6 +596,24 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<int>("FK_JehazId")
                         .HasColumnType("int");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FourthName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdentityNumber")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsertUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -577,11 +637,23 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("SecondName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ThirdName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
+
+                    b.Property<string>("UpdateUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(256)")
@@ -618,7 +690,7 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("InsertUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<int?>("ParentId")
@@ -627,11 +699,11 @@ namespace Archieve.DataAccess.Migrations
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UpdateUser")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedUser")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -644,71 +716,71 @@ namespace Archieve.DataAccess.Migrations
                         {
                             Id = 1,
                             FK_WpId = 6,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(3654),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3161),
                             IsDeleted = false,
                             ParentId = 0,
                             Text = "عام",
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(4499)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3179)
                         },
                         new
                         {
                             Id = 2,
                             FK_WpId = 1,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(5807),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3402),
                             IsDeleted = false,
                             ParentId = 1,
                             Text = "المديرية العامة للعمليات المركزية",
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(5849)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3406)
                         },
                         new
                         {
                             Id = 3,
                             FK_WpId = 6,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(5881),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3421),
                             IsDeleted = false,
                             ParentId = 1,
                             Text = "هئيات خارجية",
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(5888)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3425)
                         },
                         new
                         {
                             Id = 4,
                             FK_WpId = 2,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(5901),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3435),
                             IsDeleted = false,
                             ParentId = 2,
                             Text = "ادارة الاتصالات",
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(5907)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3439)
                         },
                         new
                         {
                             Id = 5,
                             FK_WpId = 3,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(5918),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3450),
                             IsDeleted = false,
                             ParentId = 4,
                             Text = "دائرة نظم المعلومات",
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(5925)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3453)
                         },
                         new
                         {
                             Id = 6,
                             FK_WpId = 4,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(5946),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3468),
                             IsDeleted = false,
                             ParentId = 5,
                             Text = "قسم البرمجة",
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(5953)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3472)
                         },
                         new
                         {
                             Id = 7,
                             FK_WpId = 2,
-                            InsertDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(5966),
+                            InsertDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3482),
                             IsDeleted = false,
                             ParentId = 2,
                             Text = "ادارة الامداد",
-                            UpdatedDate = new DateTime(2020, 9, 7, 22, 56, 31, 746, DateTimeKind.Local).AddTicks(5972)
+                            UpdatedDate = new DateTime(2020, 9, 11, 16, 42, 14, 554, DateTimeKind.Local).AddTicks(3486)
                         });
                 });
 
@@ -860,9 +932,7 @@ namespace Archieve.DataAccess.Migrations
 
                     b.HasOne("Archieve.DatabaseLayer.Models.WorkPlace", "FromJehazId")
                         .WithMany("mailArchivesFrom")
-                        .HasForeignKey("FK_FromJehazId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FK_FromJehazId");
 
                     b.HasOne("Archieve.DatabaseLayer.Models.MailType", "MailType")
                         .WithMany("mailArchives")
@@ -886,13 +956,30 @@ namespace Archieve.DataAccess.Migrations
 
                     b.HasOne("Archieve.DatabaseLayer.Models.WorkPlace", "ToJehazId")
                         .WithMany("mailArchivesTo")
-                        .HasForeignKey("FK_ToJehazId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FK_ToJehazId");
 
                     b.HasOne("Archieve.DatabaseLayer.Models.User", "user")
                         .WithMany("mailArchives")
                         .HasForeignKey("FK_User");
+
+                    b.HasOne("Archieve.DatabaseLayer.Models.WorkPlace", "UserWorkPlace")
+                        .WithMany()
+                        .HasForeignKey("UserWorkPlaceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Archieve.DatabaseLayer.Models.MangerDepartment", b =>
+                {
+                    b.HasOne("Archieve.DatabaseLayer.Models.User", "User")
+                        .WithMany("MangerDepartment")
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("Archieve.DatabaseLayer.Models.WorkPlace", "WorkPlace")
+                        .WithMany("MangerDepartment")
+                        .HasForeignKey("WorkPlaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Archieve.DatabaseLayer.Models.User", b =>

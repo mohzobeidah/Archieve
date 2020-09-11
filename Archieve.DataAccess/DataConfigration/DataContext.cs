@@ -30,6 +30,7 @@ namespace Archieve.DataAccess.DataConfigration
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+           
             new MailTypeConfiguration(modelBuilder.Entity<MailType>());
             new SecurityConfiguration(modelBuilder.Entity<Security>());
             new ClassificationConfigration(modelBuilder.Entity<Classification>());
@@ -38,7 +39,7 @@ namespace Archieve.DataAccess.DataConfigration
             new WorkPlaceConfigration(modelBuilder.Entity<WorkPlace>());
             new StructureTypeConfigration(modelBuilder.Entity<StructureType>());
             new MailArchiveConfigration(modelBuilder.Entity<MailArchive>());
-
+            modelBuilder.Ignore<GeneralEntity>();
         }
     }
 }

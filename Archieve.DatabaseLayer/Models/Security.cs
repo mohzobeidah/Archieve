@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Archieve.DatabaseLayer.Models
 {
-    public class Security
+    public class Security: GeneralEntity
     {
         public int Id { get; set; }
         public string SecurityName { get; set; }
@@ -15,12 +15,7 @@ namespace Archieve.DatabaseLayer.Models
         public ICollection<MailArchive> mailArchives { get; set; }
 
 
-        public string InsertUser { get; set; }
-        public DateTime? InsertDate { get; set; }
-     
-        public string UpdateUser { get; set; }
-        public DateTime? UpdateDate { get; set; }
-        public bool IsDelete { get; set; }
+    
 
     }
 }

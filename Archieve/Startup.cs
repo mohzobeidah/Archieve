@@ -35,9 +35,20 @@ namespace Archieve
             
             
             services.AddDbContext<DataContext>(options =>
+            {
                 options.UseSqlServer(
-            Configuration.GetConnectionString("DefaultConnection")));
-         services.AddIdentity<User, IdentityRole>()
+            Configuration.GetConnectionString("DefaultConnection")
+            //b=>b.MigrationsAssembly("DataAccess")
+            );
+        
+            }
+                
+                );
+            services.AddIdentity<User, IdentityRole>(option => {
+                option.Password.RequireNonAlphanumeric = false;
+                option.Password.RequireUppercase = false;
+                option.Password.RequireLowercase = false;
+            })
         .AddEntityFrameworkStores<DataContext>()
         .AddDefaultTokenProviders();
             /////////////////

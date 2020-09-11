@@ -15,8 +15,8 @@ namespace Archieve.DataAccess.Configuration
         {
 
             if (DataContext.migrate) { 
-                entity.HasData(new MailType {  Id= 1,MailName = "داخي", IsDelete = false ,  InsertDate= DateTime.Now , UpdateDate= DateTime.Now });
-                entity.HasData(new MailType { Id = 2, MailName = "خارجي", IsDelete = false, InsertDate = DateTime.Now, UpdateDate = DateTime.Now });
+                entity.HasData(new MailType {  Id= 1,MailName = "داخي", IsDeleted = false ,  InsertDate= DateTime.Now , UpdatedDate= DateTime.Now });
+                entity.HasData(new MailType { Id = 2, MailName = "خارجي", IsDeleted = false, InsertDate = DateTime.Now, UpdatedDate = DateTime.Now });
 
             }
 

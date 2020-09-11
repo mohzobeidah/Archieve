@@ -32,7 +32,7 @@ namespace Archieve.DataAccess.ViewModel
         public Nullable<System.DateTime> InsertDate { get; set; }
         public string UpdatedUser { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public Nullable<bool> IsDeletedd { get; set; }
 
         //list
 

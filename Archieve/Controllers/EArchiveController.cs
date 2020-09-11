@@ -104,11 +104,11 @@ namespace Archieve.Controllers
 
         public void getAllList()
         {
-            ViewBag.classificationList = classificationService.GetQueryable(c => c.IsDelete == false).GetListItems("ClassificationName", "Id", 0).ToList();
-            ViewBag.mailTypeList = mailTypeService.GetQueryable(c => c.IsDelete == false).GetListItems("MailName", "Id", 0).ToList();
-            ViewBag.postTypeList = postTypeService.GetQueryable(c => c.IsDelete == false).GetListItems("PostName", "Id", 0).ToList();
-            ViewBag.securityList = securityService.GetQueryable(c => c.IsDelete == false).GetListItems("SecurityName", "Id", 0).ToList();
-            ViewBag.statusList = statusService.GetQueryable(c => c.IsDelete == false).GetListItems("StatusName", "Id", 0).ToList();
+            ViewBag.classificationList = classificationService.GetQueryable(c => c.IsDeleted == false).GetListItems("ClassificationName", "Id", 0).ToList();
+            ViewBag.mailTypeList = mailTypeService.GetQueryable(c => c.IsDeleted == false).GetListItems("MailName", "Id", 0).ToList();
+            ViewBag.postTypeList = postTypeService.GetQueryable(c => c.IsDeleted == false).GetListItems("PostName", "Id", 0).ToList();
+            ViewBag.securityList = securityService.GetQueryable(c => c.IsDeleted == false).GetListItems("SecurityName", "Id", 0).ToList();
+            ViewBag.statusList = statusService.GetQueryable(c => c.IsDeleted == false).GetListItems("StatusName", "Id", 0).ToList();
         }
         [EnableCors("MyAllowSpecificOrigins")]
         public async Task<IActionResult> saveArchive(int id)
@@ -117,11 +117,11 @@ namespace Archieve.Controllers
             {
                 var eArchive = new MailArchiveVM();
 
-                eArchive.classificationList = classificationService.GetQueryable(c => c.IsDelete == false).GetListItems("ClassificationName", "Id", 0).ToList();
-                eArchive.mailTypeList = mailTypeService.GetQueryable(c => c.IsDelete == false).GetListItems("MailName", "Id", 0).ToList();
-                eArchive.postTypeList = postTypeService.GetQueryable(c => c.IsDelete == false).GetListItems("PostName", "Id", 0).ToList();
-                eArchive.securityList = securityService.GetQueryable(c => c.IsDelete == false).GetListItems("SecurityName", "Id", 0).ToList();
-                eArchive.statusList = statusService.GetQueryable(c => c.IsDelete == false).GetListItems("StatusName", "Id", 0).ToList();
+                eArchive.classificationList = classificationService.GetQueryable(c => c.IsDeleted == false).GetListItems("ClassificationName", "Id", 0).ToList();
+                eArchive.mailTypeList = mailTypeService.GetQueryable(c => c.IsDeleted == false).GetListItems("MailName", "Id", 0).ToList();
+                eArchive.postTypeList = postTypeService.GetQueryable(c => c.IsDeleted == false).GetListItems("PostName", "Id", 0).ToList();
+                eArchive.securityList = securityService.GetQueryable(c => c.IsDeleted == false).GetListItems("SecurityName", "Id", 0).ToList();
+                eArchive.statusList = statusService.GetQueryable(c => c.IsDeleted == false).GetListItems("StatusName", "Id", 0).ToList();
 
                 return View(eArchive);
             }
@@ -131,20 +131,20 @@ namespace Archieve.Controllers
                 var mailArchive = mailArchiveService.getMailArchiveById(id);
                 var mailArchivevm = mapper.Map<MailArchiveVM>(mailArchive);
 
-                mailArchivevm.classificationList = await classificationService.GetQueryable(c => c.IsDelete == false).Select(x => new SelectListItem
+                mailArchivevm.classificationList = await classificationService.GetQueryable(c => c.IsDeleted == false).Select(x => new SelectListItem
                 {
                     Text = x.ClassificationName,
                     Value = x.Id.ToString()
                 }).ToListAsync();
-                mailArchivevm.mailTypeList = await mailTypeService.GetQueryable(c => c.IsDelete == false)
+                mailArchivevm.mailTypeList = await mailTypeService.GetQueryable(c => c.IsDeleted == false)
                                                 .Select(x => new SelectListItem
                                                 {
                                                     Text = x.MailName,
                                                     Value = x.Id.ToString()
                                                 }).ToListAsync();
-                mailArchivevm.postTypeList = postTypeService.GetQueryable(c => c.IsDelete == false).GetListItems("PostName", "Id", 0).ToList();
-                mailArchivevm.securityList = securityService.GetQueryable(c => c.IsDelete == false).GetListItems("SecurityName", "Id", 0).ToList();
-                mailArchivevm.statusList = statusService.GetQueryable(c => c.IsDelete == false).GetListItems("StatusName", "Id", 0).ToList();
+                mailArchivevm.postTypeList = postTypeService.GetQueryable(c => c.IsDeleted == false).GetListItems("PostName", "Id", 0).ToList();
+                mailArchivevm.securityList = securityService.GetQueryable(c => c.IsDeleted == false).GetListItems("SecurityName", "Id", 0).ToList();
+                mailArchivevm.statusList = statusService.GetQueryable(c => c.IsDeleted == false).GetListItems("StatusName", "Id", 0).ToList();
 
 
                 return View(mailArchivevm);
@@ -159,11 +159,11 @@ namespace Archieve.Controllers
             model.FK_StatusId = 1;
             var eArchive = new MailArchiveVM {
 
-                classificationList = classificationService.GetQueryable(c => c.IsDelete == false).GetListItems("ClassificationName", "Id", 0).ToList(),
-                mailTypeList = mailTypeService.GetQueryable(c => c.IsDelete == false).GetListItems("MailName", "Id", 0).ToList(),
-                postTypeList = postTypeService.GetQueryable(c => c.IsDelete == false).GetListItems("PostName", "Id", 0).ToList(),
-                securityList = securityService.GetQueryable(c => c.IsDelete == false).GetListItems("SecurityName", "Id", 0).ToList(),
-                statusList = statusService.GetQueryable(c => c.IsDelete == false).GetListItems("StatusName", "Id", 0).ToList(),
+                classificationList = classificationService.GetQueryable(c => c.IsDeleted == false).GetListItems("ClassificationName", "Id", 0).ToList(),
+                mailTypeList = mailTypeService.GetQueryable(c => c.IsDeleted == false).GetListItems("MailName", "Id", 0).ToList(),
+                postTypeList = postTypeService.GetQueryable(c => c.IsDeleted == false).GetListItems("PostName", "Id", 0).ToList(),
+                securityList = securityService.GetQueryable(c => c.IsDeleted == false).GetListItems("SecurityName", "Id", 0).ToList(),
+                statusList = statusService.GetQueryable(c => c.IsDeleted == false).GetListItems("StatusName", "Id", 0).ToList(),
             };
             //model.FK_StatusId = 2; /// هذي انت انسيتها في الفيو
 
@@ -276,7 +276,7 @@ namespace Archieve.Controllers
                     firstMailArchive.FK_ToJehazId = model.FK_ToJehazId;
                     firstMailArchive.Topic = model.Topic;
                     firstMailArchive.Note = model.Note;
-                    firstMailArchive.UpdateDate = DateTime.UtcNow;
+                    firstMailArchive.UpdatedDate = DateTime.UtcNow;
                     firstMailArchive.UpdateUser = USERNAME;
 
                     var result = await mailArchiveService.UpdateAndLogAsync(firstMailArchive, USERNAME);

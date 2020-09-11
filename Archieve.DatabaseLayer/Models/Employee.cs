@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Archieve.DatabaseLayer.Models
 {
-    public class Employee
+    public class Employee: GeneralEntity
     {
         [Key]
         public int EmpId { get; set; }
@@ -24,12 +24,7 @@ namespace Archieve.DatabaseLayer.Models
         public string LName { get; set; }
         //public Nullable<int> FK_WorkPlaceId { get; set; }
       
-        public string InsertUser { get; set; }
-        public DateTime? InsertDate { get; set; }
-      
-        public string UpdateUser { get; set; }
-        public DateTime? UpdateDate { get; set; }
-        public bool IsDelete { get; set; }
+        
 
       //  public ICollection<User> Users { get; set; }
 

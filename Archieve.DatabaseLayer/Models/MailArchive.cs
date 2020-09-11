@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Archieve.DatabaseLayer.Models
 {
-    public class MailArchive
+    public class MailArchive: GeneralEntity
     {
         public int ID { get; set; }
         public string MailId { get; set; }
@@ -56,18 +56,14 @@ namespace Archieve.DatabaseLayer.Models
         public Status Status { get; set; }
 
      
-        public string InsertUser { get; set; }
-        public DateTime? InsertDate { get; set; }
-     
-        public string UpdateUser { get; set; }
-        public DateTime? UpdateDate { get; set; }
-        public bool IsDelete { get; set; }
-
         public string FK_User { get; set; }
         [ForeignKey(nameof(FK_User))]
         public virtual User user { get; set; }
 
-        
+        public int UserWorkPlaceID { get; set; }
+        [ForeignKey(nameof(UserWorkPlaceID))]
+        public WorkPlace UserWorkPlace { get; set; }
+
         public ICollection<ImageArchive> imageArchives { get; set; }
         /// public string ScannedFiles { get; set; }
     }

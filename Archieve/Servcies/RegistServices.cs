@@ -25,6 +25,7 @@ namespace Archieve.Servcies
             services.AddScoped<IWorkPlaceService, WorkPlaceService>();
             services.AddScoped<IMailArchiveService, MailArchiveService>(); 
             services.AddScoped<IImageArchiveService, ImageArchiveService>();
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }

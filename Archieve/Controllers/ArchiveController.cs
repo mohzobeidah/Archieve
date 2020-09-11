@@ -80,9 +80,14 @@ namespace Archieve.Controllers
                 out totalNo,
                 out recordFilter
                 );
+
+            var newObj = obj.Select(c => new {
+                id = c.Id,
+                gname = c.MailName
+            });
             return Json(new
             {
-                data = obj,
+                data = newObj,
                 eEcho = param.sEcho,
                 iTotalDisplayRecords = recordFilter,
                 iTotalRecords = totalNo
@@ -98,9 +103,13 @@ namespace Archieve.Controllers
                 out totalNo,
                 out recordFilter
                 );
+            var newObj = obj.Select(c => new {
+                id = c.Id,
+                gname = c.PostName
+            });
             return Json(new
             {
-                data = obj,
+                data = newObj,
                 eEcho = param.sEcho,
                 iTotalDisplayRecords = recordFilter,
                 iTotalRecords = totalNo
@@ -116,9 +125,13 @@ namespace Archieve.Controllers
                 out totalNo,
                 out recordFilter
                 );
+            var newObj = obj.Select(c => new {
+                id = c.Id,
+                gname = c.SecurityName
+            });
             return Json(new
             {
-                data = obj,
+                data = newObj,
                 eEcho = param.sEcho,
                 iTotalDisplayRecords = recordFilter,
                 iTotalRecords = totalNo
@@ -134,9 +147,13 @@ namespace Archieve.Controllers
                 out totalNo,
                 out recordFilter
                 );
+            var newObj = obj.Select(c => new {
+                id = c.Id,
+                gname = c.StatusName
+            });
             return Json(new
             {
-                data = obj,
+                data = newObj,
                 eEcho = param.sEcho,
                 iTotalDisplayRecords = recordFilter,
                 iTotalRecords = totalNo
@@ -221,7 +238,7 @@ namespace Archieve.Controllers
                     var firstClassifiction = getClassifiction.FirstOrDefault();
                     firstClassifiction.ClassificationName = model.ClassificationName;
                     firstClassifiction.UpdateUser = USERNAME;
-                    firstClassifiction.UpdateDate = DateTime.UtcNow;
+                    firstClassifiction.UpdatedDate = DateTime.UtcNow;
 
 
 
@@ -279,8 +296,8 @@ namespace Archieve.Controllers
             var getClassficationDelete = classification.Find(id);
             if (getClassficationDelete.Id > 0)
             {
-                getClassficationDelete.IsDelete = true;
-                getClassficationDelete.UpdateDate = DateTime.UtcNow;
+                getClassficationDelete.IsDeleted = true;
+                getClassficationDelete.UpdatedDate = DateTime.UtcNow;
                 getClassficationDelete.UpdateUser = USERNAME;
                 var result = await classification.UpdateAndLogAsync(getClassficationDelete, USERNAME);
                 if (result > 0)

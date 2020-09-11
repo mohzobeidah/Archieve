@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Archieve.DatabaseLayer.Models
 {
-   public class WorkPlace
+   public class WorkPlace: GeneralEntity
     {
         [key]
         public int Id { get; set; }
@@ -15,11 +15,7 @@ namespace Archieve.DatabaseLayer.Models
         public int FK_WpId { get; set; }
         [ForeignKey(nameof(FK_WpId))]
         public virtual StructureType StructureType { get; set; }
-        public string InsertUser { get; set; }
-        public Nullable<System.DateTime> InsertDate { get; set; }
-        public string UpdatedUser { get; set; }
-        public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+     
 
         
         [InverseProperty("FromJehazId")]
@@ -30,6 +26,8 @@ namespace Archieve.DatabaseLayer.Models
 
  
         public ICollection<User> Users { get; set; }
+
+        public virtual ICollection<MangerDepartment> MangerDepartment { get; set; }
 
 
 

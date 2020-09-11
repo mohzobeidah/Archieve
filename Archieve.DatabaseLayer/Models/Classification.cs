@@ -19,7 +19,7 @@ namespace Archieve.DatabaseLayer.Models
         public DateTime? InsertDate { get; set; }
      
         public string UpdateUser { get; set; }
-        public DateTime? UpdateDate { get; set; }
-        public bool IsDelete { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

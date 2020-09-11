@@ -14,8 +14,8 @@ namespace Archieve.DataAccess.Configuration
         {
 
             if (DataContext.migrate) {
-                entity.HasData(new PostType { Id = 1, PostName = "صادر",  IsDelete = false, InsertDate = DateTime.Now, UpdateDate = DateTime.Now });
-                entity.HasData(new PostType { Id = 2, PostName ="وارد", IsDelete = false, InsertDate = DateTime.Now, UpdateDate = DateTime.Now });
+                entity.HasData(new PostType { Id = 1, PostName = "صادر",  IsDeleted = false, InsertDate = DateTime.Now, UpdatedDate = DateTime.Now });
+                entity.HasData(new PostType { Id = 2, PostName ="وارد", IsDeleted = false, InsertDate = DateTime.Now, UpdatedDate = DateTime.Now });
             }
 
         }

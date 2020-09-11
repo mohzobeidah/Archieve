@@ -19,8 +19,8 @@ namespace Archieve.DataAccess.ViewModel
         public string InsertUser { get; set; }
         public Nullable<System.DateTime> InsertDate { get; set; }
         public string UpdateUser { get; set; }
-        public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public Nullable<bool> IsDeletedd { get; set; }
 
     }
 }

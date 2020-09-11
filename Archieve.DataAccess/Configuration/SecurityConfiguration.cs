@@ -17,8 +17,8 @@ namespace Archieve.DataAccess.Configuration
 
             if (DataContext.migrate)
             {
-                entity.HasData(new Security { Id = 1, SecurityName = "عادي", IsDelete = false, InsertDate = DateTime.Now, UpdateDate = DateTime.Now });
-                entity.HasData(new Security { Id = 2, SecurityName = "سري", IsDelete = false, InsertDate = DateTime.Now, UpdateDate = DateTime.Now });
+                entity.HasData(new Security { Id = 1, SecurityName = "عادي", IsDeleted = false, InsertDate = DateTime.Now, UpdatedDate = DateTime.Now });
+                entity.HasData(new Security { Id = 2, SecurityName = "سري", IsDeleted = false, InsertDate = DateTime.Now, UpdatedDate = DateTime.Now });
             }
         }
 

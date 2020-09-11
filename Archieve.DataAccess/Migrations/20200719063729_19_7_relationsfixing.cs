@@ -31,8 +31,8 @@ namespace Archieve.DataAccess.Migrations
                     InsertUser = table.Column<string>(nullable: true),
                     InsertDate = table.Column<DateTime>(nullable: true),
                     UpdateUser = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    IsDelete = table.Column<bool>(nullable: false)
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,8 +54,8 @@ namespace Archieve.DataAccess.Migrations
                     InsertUser = table.Column<string>(nullable: true),
                     InsertDate = table.Column<DateTime>(nullable: true),
                     UpdateUser = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    IsDelete = table.Column<bool>(nullable: false)
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,8 +72,8 @@ namespace Archieve.DataAccess.Migrations
                     InsertUser = table.Column<string>(nullable: true),
                     InsertDate = table.Column<DateTime>(nullable: true),
                     UpdateUser = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    IsDelete = table.Column<bool>(nullable: false)
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,8 +90,8 @@ namespace Archieve.DataAccess.Migrations
                     InsertUser = table.Column<string>(nullable: true),
                     InsertDate = table.Column<DateTime>(nullable: true),
                     UpdateUser = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    IsDelete = table.Column<bool>(nullable: false)
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -108,8 +108,8 @@ namespace Archieve.DataAccess.Migrations
                     InsertUser = table.Column<string>(nullable: true),
                     InsertDate = table.Column<DateTime>(nullable: true),
                     UpdateUser = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    IsDelete = table.Column<bool>(nullable: false)
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -126,8 +126,8 @@ namespace Archieve.DataAccess.Migrations
                     InsertUser = table.Column<string>(nullable: true),
                     InsertDate = table.Column<DateTime>(nullable: true),
                     UpdateUser = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    IsDelete = table.Column<bool>(nullable: false)
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -145,7 +145,7 @@ namespace Archieve.DataAccess.Migrations
                     InsertDate = table.Column<DateTime>(nullable: true),
                     UpdatedUser = table.Column<string>(nullable: true),
                     UpdatedDate = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: true)
+                    IsDeletedd = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -186,7 +186,7 @@ namespace Archieve.DataAccess.Migrations
                     InsertDate = table.Column<DateTime>(nullable: true),
                     UpdatedUser = table.Column<string>(nullable: true),
                     UpdatedDate = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: true)
+                    IsDeletedd = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -335,8 +335,8 @@ namespace Archieve.DataAccess.Migrations
                     InsertUser = table.Column<string>(nullable: true),
                     InsertDate = table.Column<DateTime>(nullable: true),
                     UpdateUser = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    IsDelete = table.Column<bool>(nullable: false),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
                     FK_User = table.Column<string>(nullable: true),
                     WorkPlaceId = table.Column<int>(nullable: true),
                     WorkPlaceId1 = table.Column<int>(nullable: true)
@@ -410,8 +410,8 @@ namespace Archieve.DataAccess.Migrations
                     InsertUser = table.Column<string>(nullable: true),
                     InsertDate = table.Column<DateTime>(nullable: true),
                     UpdateUser = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: true)
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    IsDeletedd = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -426,7 +426,7 @@ namespace Archieve.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Classifications",
-                columns: new[] { "Id", "ClassificationName", "InsertDate", "InsertUser", "IsDelete", "UpdateDate", "UpdateUser" },
+                columns: new[] { "Id", "ClassificationName", "InsertDate", "InsertUser", "IsDeleted", "UpdatedDate", "UpdateUser" },
                 values: new object[,]
                 {
                     { 1, "ترقين قيد ", new DateTime(2020, 7, 19, 9, 37, 28, 979, DateTimeKind.Local).AddTicks(3007), null, false, new DateTime(2020, 7, 19, 9, 37, 28, 979, DateTimeKind.Local).AddTicks(3843), null },
@@ -437,7 +437,7 @@ namespace Archieve.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "MailTypes",
-                columns: new[] { "Id", "InsertDate", "InsertUser", "IsDelete", "MailName", "UpdateDate", "UpdateUser" },
+                columns: new[] { "Id", "InsertDate", "InsertUser", "IsDeleted", "MailName", "UpdatedDate", "UpdateUser" },
                 values: new object[,]
                 {
                     { 1, new DateTime(2020, 7, 19, 9, 37, 28, 971, DateTimeKind.Local).AddTicks(4206), null, false, "داخي", new DateTime(2020, 7, 19, 9, 37, 28, 975, DateTimeKind.Local).AddTicks(4001), null },
@@ -446,7 +446,7 @@ namespace Archieve.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "PostTypes",
-                columns: new[] { "Id", "InsertDate", "InsertUser", "IsDelete", "PostName", "UpdateDate", "UpdateUser" },
+                columns: new[] { "Id", "InsertDate", "InsertUser", "IsDeleted", "PostName", "UpdatedDate", "UpdateUser" },
                 values: new object[,]
                 {
                     { 1, new DateTime(2020, 7, 19, 9, 37, 28, 980, DateTimeKind.Local).AddTicks(3606), null, false, "صادر", new DateTime(2020, 7, 19, 9, 37, 28, 980, DateTimeKind.Local).AddTicks(4537), null },
@@ -455,7 +455,7 @@ namespace Archieve.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Securities",
-                columns: new[] { "Id", "InsertDate", "InsertUser", "IsDelete", "SecurityName", "UpdateDate", "UpdateUser" },
+                columns: new[] { "Id", "InsertDate", "InsertUser", "IsDeleted", "SecurityName", "UpdatedDate", "UpdateUser" },
                 values: new object[,]
                 {
                     { 2, new DateTime(2020, 7, 19, 9, 37, 28, 978, DateTimeKind.Local).AddTicks(3612), null, false, "سري", new DateTime(2020, 7, 19, 9, 37, 28, 978, DateTimeKind.Local).AddTicks(3642), null },
@@ -464,7 +464,7 @@ namespace Archieve.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Statuses",
-                columns: new[] { "Id", "InsertDate", "InsertUser", "IsDelete", "StatusName", "UpdateDate", "UpdateUser" },
+                columns: new[] { "Id", "InsertDate", "InsertUser", "IsDeleted", "StatusName", "UpdatedDate", "UpdateUser" },
                 values: new object[,]
                 {
                     { 1, new DateTime(2020, 7, 19, 9, 37, 28, 981, DateTimeKind.Local).AddTicks(6114), null, false, "منجر", new DateTime(2020, 7, 19, 9, 37, 28, 981, DateTimeKind.Local).AddTicks(7709), null },
@@ -473,7 +473,7 @@ namespace Archieve.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "StructureTypes",
-                columns: new[] { "Id", "Description", "InsertDate", "InsertUser", "IsDeleted", "UpdatedDate", "UpdatedUser" },
+                columns: new[] { "Id", "Description", "InsertDate", "InsertUser", "IsDeletedd", "UpdatedDate", "UpdatedUser" },
                 values: new object[,]
                 {
                     { 1, "الجهاز", new DateTime(2020, 7, 19, 9, 37, 28, 985, DateTimeKind.Local).AddTicks(5393), null, false, new DateTime(2020, 7, 19, 9, 37, 28, 985, DateTimeKind.Local).AddTicks(6233), null },
@@ -486,7 +486,7 @@ namespace Archieve.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "WorkPlaces",
-                columns: new[] { "Id", "FK_WpId", "InsertDate", "InsertUser", "IsDeleted", "ParentId", "Text", "UpdatedDate", "UpdatedUser" },
+                columns: new[] { "Id", "FK_WpId", "InsertDate", "InsertUser", "IsDeletedd", "ParentId", "Text", "UpdatedDate", "UpdatedUser" },
                 values: new object[,]
                 {
                     { 2, 1, new DateTime(2020, 7, 19, 9, 37, 28, 984, DateTimeKind.Local).AddTicks(1255), null, false, 1, "المديرية العامة للعمليات المركزية", new DateTime(2020, 7, 19, 9, 37, 28, 984, DateTimeKind.Local).AddTicks(1289), null },

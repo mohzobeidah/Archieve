@@ -47,8 +47,8 @@ namespace Archieve.DataAccess.Repository
         //    Classification getid = await FindAsync(id);
         //    if (getid !=null)
         //    {
-        //        getid.IsDelete = true;
-        //        getid.UpdateDate = DateTime.UtcNow;
+        //        getid.IsDeleted = true;
+        //        getid.UpdatedDate = DateTime.UtcNow;
         //    }
         //    var xx=await UpdateAndLogAsync(getid,username);
         //    return null;
@@ -56,8 +56,8 @@ namespace Archieve.DataAccess.Repository
 
         public IQueryable<MailArchive> GetMailArchives(string filter, int initalPage, int pageSize, out int totalRecord, out int recordsFilter)
         {
-            var data = GetQueryable(c => c.IsDelete == false);
-             totalRecord = GetQueryable(c => c.IsDelete == false).Count();
+            var data = GetQueryable(c => c.IsDeleted == false);
+             totalRecord = GetQueryable(c => c. IsDeleted == false).Count();
             if (!string.IsNullOrEmpty(filter))
             {
                 data = data.Where(c => c.Topic.ToLower()

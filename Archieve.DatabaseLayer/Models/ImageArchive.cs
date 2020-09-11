@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Archieve.DatabaseLayer.Models
 {
-    public class ImageArchive
+    public class ImageArchive: GeneralEntity
     {
         public int Id { get; set; }
 
@@ -21,11 +21,7 @@ namespace Archieve.DatabaseLayer.Models
         public string Type { get; set; }
         public string Extension { get; set; }
         public string Path { get; set; }
-        public string InsertUser { get; set; }
-        public Nullable<System.DateTime> InsertDate { get; set; }
-        public string UpdateUser { get; set; }
-        public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        
 
     }
 }

@@ -27,7 +27,7 @@ namespace Archieve.DataAccess.Repository
                   parent = (x.ParentId.ToString() == "0" ? "#" : x.ParentId.ToString()),
                   text = x.Text,
                   DepType = x.FK_WpId.ToString(),
-                  IsDeleted = x.IsDeleted
+                  IsDeletedd = x.IsDeleted
               }).ToList();
         }
     }

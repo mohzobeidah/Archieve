@@ -9,22 +9,27 @@ namespace Archieve.DatabaseLayer.Models
 {
     public class User:IdentityUser
     {
-        //public int FK_FromJehazId { get; set; }
-        //[ForeignKey(nameof(FK_FromJehazId))]
-        //public virtual WorkPlace FromJehazId { get; set; }
-        //public int FK_ToJehazId { get; set; }
-        //[ForeignKey(nameof(FK_ToJehazId))]
-        //public virtual WorkPlace ToJehazId { get; set; }
-        //[Key]
-        //public string ID { get; set; }
-        //public string IDCard { get; set; }
-        //public string WorkPlace { get; set; }
+        
 
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
+        public string ThirdName { get; set; }
+        public string FourthName { get; set; }
+        public int  IdentityNumber { get; set; }
         public int FK_JehazId { get; set; }
         [ForeignKey(nameof(FK_JehazId))]
         public virtual WorkPlace WorkPlace { get; set; }
       
         public ICollection<MailArchive> mailArchives{ get; set; }
+
+        public virtual ICollection<MangerDepartment> MangerDepartment { get; set; }
+
+        public string InsertUser { get; set; }
+        public DateTime? InsertDate { get; set; } = DateTime.Now;
+
+        public string UpdateUser { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public bool IsDeleted { get; set; }
 
 
     }

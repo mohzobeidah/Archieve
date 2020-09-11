@@ -17,7 +17,7 @@ namespace Archieve.DataAccess.Repository
         }
         public IQueryable<Employee> GetEmployees(string filter, int initalPage, int pageSize, out int totalRecord, out int recordsFilter)
         {
-            var data = GetQueryable(c => c.IsDelete == false);
+            var data = GetQueryable(c => c.IsDeleted == false);
              totalRecord = data.Count();
             if (!string.IsNullOrEmpty(filter))
             {

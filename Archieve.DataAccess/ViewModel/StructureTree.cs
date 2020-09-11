@@ -20,7 +20,7 @@ namespace Archieve.DataAccess.ViewModel
         public string li_attr { get; set; }
         public string a_attr { get; set; }
         public string DepType { set; get; }
-        public bool? IsDeleted { get; set; }
+        public bool? IsDeletedd { get; set; }
 
     }
 }

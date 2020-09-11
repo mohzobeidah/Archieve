@@ -62,37 +62,7 @@
                         </li>
                     </ul>
                     <div class="tab-content mt-5" id="myTabContent">
-                        <div class="tab-pane fade show active" id="tab_1" role="tabpanel" aria-labelledby="tab_1">
-                            <div class="card">
-                                <div class="card-header">
-                                    <button type="button" id="btnModalClassification" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#modalClassification">
-                                        اضافة
-                                    </button>
-                                    @**@
-                                    @*<h3 class="card-title">Control Panel for  Products </h3>
-                       <a href="@Url.Action("saveClassification","Archive")" class="btn btn-primary" style="float:right;">
-                           تصنيف جديد
-                    </a>*@
 
-                                </div>
-                                <div class="card-body">
-                                    <table class="table table-hover table-striped" id="tblGeneral">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" width="20%" class="text-center">#</th>
-                                                <th scope="col" width="50%" class="text-center">اسم التصنيف</th>
-                                                <th scope="col" width="30%" class="text-center">الاعدادات</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-
-                        </div>
                         <div class="tab-pane fade" id="tab_2" role="tabpanel" aria-labelledby="tab_2">
                             <partial name="_addMailType" />
                         </div>
@@ -105,6 +75,33 @@
                         <div class="tab-pane fade" id="tab_5" role="tabpanel" aria-labelledby="tab_5">
                             <partial name="_addStatus" />
                         </div>
+                    </div>
+                    <div class="tab-pane fade show active" id="tab_1" role="tabpanel" aria-labelledby="tab_1">
+                        <div class="card">
+                            <div class="card-header">
+                                <button type="button" id="btnModalClassification" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#modalClassification">
+                                    اضافة
+                                </button>
+
+
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-hover table-striped" id="tblGeneral">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" width="20%" class="text-center">#</th>
+                                            <th scope="col" width="50%" class="text-center">اسم التصنيف</th>
+                                            <th scope="col" width="30%" class="text-center">الاعدادات</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
 
@@ -231,7 +228,7 @@
 
                         },
 
-                        { data: ColName , "className": "text-center" },
+                        { data: "gname" , "className": "text-center" },
 
                         //{
                         //    data: null, render: function (data, type, row) {
@@ -430,18 +427,24 @@
             //end delete btn
             $('#atab_1').click(function () {
                 BindDataTable("/Archive/getClassification", "gname");
+                $("#btnModalClassification").attr("data-target", "#modalClassification");
             });
             $('#atab_2').click(function () {
                 BindDataTable("/Archive/getMailType", "mailName");
+              
+                $("#btnModalClassification").attr("data-target", "#modalPostType");
             });
             $('#atab_3').click(function () {
-                BindDataTable("/Archive/getPostType","postName");
+                BindDataTable("/Archive/getPostType", "postName");
+                $("#btnModalClassification").attr("data-target", "#MailTypeModel");
             });
             $('#atab_4').click(function () {
                 BindDataTable("/Archive/getSecurity");
+                $("#btnModalClassification").attr("data-target", "#modalSecurity");
             });
             $('#atab_5').click(function () {
                 BindDataTable("/Archive/getStatus");
+                $("#btnModalClassification").attr("data-target", "#modalStatus");
             });
         });
     </script>
