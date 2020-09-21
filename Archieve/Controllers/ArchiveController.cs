@@ -21,16 +21,16 @@ namespace Archieve.Controllers
         private readonly IPostTypeService postType;
         private readonly ISecurityService security;
         private readonly IStatusService status;
+        private readonly IUserService userService;
 
-
-        
         public ArchiveController(IHttpContextAccessor accessor,
                                  IMapper mapper,
                                  IClassificationService classification,
                                  IMailTypeService mailType,
                                  IPostTypeService postType,
                                  ISecurityService security,
-                                 IStatusService status) : base(accessor)
+                                 IStatusService status,
+                                 IUserService userService) : base(accessor, userService)
         {
 
             this.mapper = mapper;
@@ -39,6 +39,7 @@ namespace Archieve.Controllers
             this.postType = postType;
             this.security = security;
             this.status = status;
+            this.userService = userService;
         }
         public IActionResult Index()
         {

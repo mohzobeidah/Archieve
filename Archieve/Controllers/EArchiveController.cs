@@ -10,6 +10,7 @@ using Archieve.DataAccess.ViewModel;
 using Archieve.DatabaseLayer.Models;
 using Archieve.Helper;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch.Internal;
@@ -24,7 +25,7 @@ using PdfSharpCore.Pdf;
 namespace Archieve.Controllers
 {
     [EnableCors("MyAllowSpecificOrigins")]
-
+    [Authorize(Roles = "Admin")]
     public class EArchiveController : BaseController
     {
         private readonly IHttpContextAccessor accessor;
@@ -49,9 +50,10 @@ namespace Archieve.Controllers
                                  IPostTypeService postTypeService,
                                  ISecurityService securityService,
                                  IStatusService statusService,
-                                 IImageArchiveService imageArchiveService
+                                 IImageArchiveService imageArchiveService,
+                                 IUserService userService
             //ILogger logger
-            ) : base(accessor)
+            ) : base(accessor, userService)
         {
             this.accessor = accessor;
             this.mapper = mapper;
@@ -113,6 +115,8 @@ namespace Archieve.Controllers
         [EnableCors("MyAllowSpecificOrigins")]
         public async Task<IActionResult> saveArchive(int id)
         {
+            var user = USERNAME;
+
             if (id == 0)
             {
                 var eArchive = new MailArchiveVM();
@@ -122,6 +126,7 @@ namespace Archieve.Controllers
                 eArchive.postTypeList = postTypeService.GetQueryable(c => c.IsDeleted == false).GetListItems("PostName", "Id", 0).ToList();
                 eArchive.securityList = securityService.GetQueryable(c => c.IsDeleted == false).GetListItems("SecurityName", "Id", 0).ToList();
                 eArchive.statusList = statusService.GetQueryable(c => c.IsDeleted == false).GetListItems("StatusName", "Id", 0).ToList();
+                
 
                 return View(eArchive);
             }
@@ -153,8 +158,10 @@ namespace Archieve.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<JsonResult> saveArchive(MailArchiveVM model)
+        public async Task<JsonResult> saveArchive(MailArchiveVM model,string user,int UserWorkPlace)
         {
+
+            var userName = accessor.HttpContext.User.Identity.Name;
 
             model.FK_StatusId = 1;
             var eArchive = new MailArchiveVM {
@@ -187,7 +194,10 @@ namespace Archieve.Controllers
 
                     }
                     model.InsertDate = DateTime.UtcNow;
-                    model.InsertUser = USERNAME;
+                    model.InsertUser = USER_NAME.UserName;
+                    model.UserWorkPlaceID = USER_NAME.WorkPlace.Id;
+
+
                     model.Year = DateTime.UtcNow.Year.ToString();
                     var newModel = mapper.Map<MailArchive>(model);
 
@@ -277,7 +287,10 @@ namespace Archieve.Controllers
                     firstMailArchive.Topic = model.Topic;
                     firstMailArchive.Note = model.Note;
                     firstMailArchive.UpdatedDate = DateTime.UtcNow;
-                    firstMailArchive.UpdateUser = USERNAME;
+                    firstMailArchive.UpdateUser = USER_NAME.UserName;
+
+                    
+                    firstMailArchive.UserWorkPlaceID = USER_NAME.WorkPlace.Id;
 
                     var result = await mailArchiveService.UpdateAndLogAsync(firstMailArchive, USERNAME);
                     if (result > 0)

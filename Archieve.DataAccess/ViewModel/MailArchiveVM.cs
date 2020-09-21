@@ -23,6 +23,7 @@ namespace Archieve.DataAccess.ViewModel
         public int FK_SecurityId { get; set; }
         public int FK_PostTypeId { get; set; }
         public int FK_StatusId { get; set; }
+        public int UserWorkPlaceID { get; set; }
         public string Note { get; set; }
         public DateTime? ArchiveDate { get; set; }
         [DataType(DataType.Date)]
@@ -43,6 +44,7 @@ namespace Archieve.DataAccess.ViewModel
         public IEnumerable<SelectListItem> statusList { get; set; }
         public IEnumerable<SelectListItem> fromJehazList { get; set; }
         public IEnumerable<SelectListItem> toJehazList { get; set; }
+       
         //  public HttpPostedFileBase file { get; set; }
         public string test { get; set; }
 

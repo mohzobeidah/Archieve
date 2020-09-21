@@ -19,16 +19,16 @@ namespace Archieve.DataAccess.Repository
         }
         public List<StructureTree> GetWorkPlaces(string filter)
         {
-            var x =  GetQueryable(z => z.IsDeleted == false) ;                
-              return   x.Select(x =>
-              new StructureTree
-              {
-                  id = x.Id.ToString(),
-                  parent = (x.ParentId.ToString() == "0" ? "#" : x.ParentId.ToString()),
-                  text = x.Text,
-                  DepType = x.FK_WpId.ToString(),
-                  IsDeletedd = x.IsDeleted
-              }).ToList();
+            var x = GetQueryable(z => z.IsDeleted == false);
+            return x.Select(x =>
+          new StructureTree
+          {
+              id = x.Id.ToString(),
+              parent = (x.ParentId.ToString() == "0" ? "#" : x.ParentId.ToString()),
+              text = x.Text,
+              DepType = x.FK_WpId.ToString(),
+              IsDeletedd = x.IsDeleted
+          }).ToList();
         }
     }
 }

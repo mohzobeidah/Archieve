@@ -21,7 +21,8 @@ namespace Archieve.Servcies
             CreateMap<MailArchive, MailArchiveVM>().ReverseMap();
             CreateMap<WorkPlace, WorkPlaceVM>().ReverseMap();
             CreateMap<MailArchive, MailArchiveVM>().ReverseMap();
-
+            CreateMap<MilitaryRank, MilitaryRankVM>().ReverseMap();
+            CreateMap<User, UserVM>().ReverseMap();
 
 
 

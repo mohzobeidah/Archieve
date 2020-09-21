@@ -1,0 +1,58 @@
+﻿@using Archieve.DataAccess.ViewModel
+
+@model RoleVM
+@{ Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "الصلاحيات"; }
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b example example-compact">
+            <div class="card-header">
+                <h3 class="card-title">ادخال الصلاحية </h3>
+                <div class="card-toolbar">
+                    <div class="example-tools justify-content-center">
+                        <span class="example-toggle" data-toggle="tooltip" title="View code"></span>
+                        <span class="example-copy" data-toggle="tooltip" title="Copy code"></span>
+                    </div>
+                </div>
+            </div>
+            <!--begin::Form-->
+
+            <form method="post" asp-action="Create" asp-controller="Administrator">
+                @*id="saveRegister" data-ajax="true" data-ajax-complete="completed" data-ajax-method="post"*@
+                <div class="card-body">
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label asp-for="RoleName"> الصلاحية</label>
+                                    <div class="form-group">
+                                        <input asp-for="RoleName" class="form-control" />
+                                        <span asp-validation-for="RoleName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" id="" class="btn btn-primary"><i class="fa fa-scanner"></i>اضافة</button>
+                    <button type="reset" class="btn btn-secondary">الغاء</button>
+                </div>
+            </form>
+
+            <!--begin: Code-->
+            <!--end: Code-->
+            <!--end::Form-->
+        </div>
+        <!--end::Card-->
+    </div>
+</div>
+
+

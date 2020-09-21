@@ -40,22 +40,19 @@ namespace Archieve.DatabaseLayer.Models
         public MailType MailType { get; set; }
 
         public int? FK_SecurityId { get; set; }
-
-      
         [ForeignKey(nameof(FK_SecurityId))]
         public Security Security { get; set; }
      
         public int FK_PostTypeId { get; set; }
-
         [ForeignKey(nameof(FK_PostTypeId))]
         public PostType PostType { get; set; }
 
         public int FK_StatusId { get; set; }
-
         [ForeignKey(nameof(FK_StatusId))]
         public Status Status { get; set; }
 
-     
+
+
         public string FK_User { get; set; }
         [ForeignKey(nameof(FK_User))]
         public virtual User user { get; set; }

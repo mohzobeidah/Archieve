@@ -10,5 +10,7 @@ namespace Archieve.DataAccess.IRepository
     public interface IUserService: IRepository<User>
     {
         IQueryable<User> GetUser(string filter, int initalPage, int pageSize, out int totalRecord, out int recordsFilter);
+        public User getUserById(string id);
+        public User getUserByUserName(string userName);
     }
 }

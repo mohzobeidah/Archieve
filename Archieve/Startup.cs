@@ -37,8 +37,8 @@ namespace Archieve
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(
-            Configuration.GetConnectionString("DefaultConnection")
-            //b=>b.MigrationsAssembly("DataAccess")
+            Configuration.GetConnectionString("DefaultConnection"),
+            b=>b.MigrationsAssembly("Archieve")
             );
         
             }
@@ -58,13 +58,16 @@ namespace Archieve
     
             //services.AddAuthentication(IISDefaults.AuthenticationScheme);
             ///////////////////
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddControllersWithViews(option=> {
+                option.Filters.Add(typeof(UserActivityFilters));
+            }).AddRazorRuntimeCompilation();
 
             /////////////////////////////////
 
         
 
             services.AddAutoMapper(typeof(Startup));
+            
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -130,9 +133,10 @@ namespace Archieve
             app.UseStaticFiles();
 
             app.UseRouting();
-           
+          //  app.UseCors("MyAllowSpecificOrigins");
             app.UseAuthentication();
-            app.UseCors("MyAllowSpecificOrigins");
+            app.UseAuthorization();
+          
             app.UseCors(options => { options.AllowAnyOrigin(); options.AllowAnyHeader(); });
             //app.UseMvcWithDefaultRoute();
             app.UseEndpoints(endpoints =>

@@ -1,0 +1,340 @@
+﻿@using Archieve.DataAccess.ViewModel
+@model UserVM
+@{ Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Register"; }
+
+<h1>@ViewData["Title"]</h1>
+<style>
+
+    #myform * {
+        padding-left: 15px;
+    }
+
+    #form .mode-switch.active {
+        background: none;
+        background-color: #558B2F;
+        color: #DCEDC8;
+        cursor: default;
+    }
+
+    #form .mode-switch.inactive {
+        background-color: #212121;
+        border: 1px solid #202020;
+        color: #757575;
+    }
+
+        #form .mode-switch.inactive:hover {
+            color: #9E9E9E;
+        }
+
+    #form .mode-switch:disabled, #form .mode-switch:disabled:hover {
+        background-color: #212121;
+        color: #424242;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999999999999999;
+    }
+
+    .overlay-content {
+        position: fixed;
+        vertical-align: middle;
+        text-align: center;
+        left: 0;
+        top: 50%;
+        right: 0;
+        z-index: 9999999999999;
+    }
+
+    .overlay-message {
+        color: #AAAAAA;
+    }
+
+    .loader {
+        z-index: 1002;
+        top: 50%;
+        margin: 0 auto 20px;
+        display: block;
+        width: 60px;
+        height: 60px;
+        border: 1px solid;
+        border-color: #545a6a #d4d4db #d4d4db #545a6a;
+        border-radius: 100%;
+        opacity: 1;
+        -webkit-animation: rotate .6s linear infinite;
+        animation: rotate .6s linear infinite;
+    }
+
+    @@-webkit-keyframes rotate {
+        0% {
+            -webkit-transform: rotateZ(-360deg);
+            transform: rotateZ(-360deg);
+        }
+
+        100% {
+            -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+        }
+    }
+
+    @@keyframes rotate {
+        0% {
+            -webkit-transform: rotateZ(-360deg);
+            transform: rotateZ(-360deg);
+        }
+
+        100% {
+            -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+        }
+    }
+
+    .portlet-body.form * {
+        font-size: 1.03em;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b example example-compact">
+            <div class="card-header">
+                <h3 class="card-title">ادخال المستخدم </h3>
+                <div class="card-toolbar">
+                    <div class="example-tools justify-content-center">
+                        <span class="example-toggle" data-toggle="tooltip" title="View code"></span>
+                        <span class="example-copy" data-toggle="tooltip" title="Copy code"></span>
+                    </div>
+                </div>
+            </div>
+            <!--begin::Form-->
+
+            <form method="post" asp-action="Register" asp-controller="Account"
+                  id="saveRegister"data-ajax="true" data-ajax-complete="completed" data-ajax-method="post">
+                @**@
+                <div class="card-body">
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="row">
+                            <input asp-for="Id" class="form-control" />
+                        <div class="col-md-6">
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label asp-for="FirstName">الاسم الأول</label>
+                                    <div class="form-group">
+                                        <input asp-for="FirstName" class="form-control" />
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <label asp-for="SecondName">اسم الأب</label>
+                                    <div class="form-group">
+                                        <input asp-for="SecondName" class="form-control" />
+                                        <span asp-validation-for="SecondName" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <label asp-for="ThirdName">اسم الجد</label>
+                                    <div class="form-group">
+                                        <input asp-for="ThirdName" class="form-control" />
+                                        <span asp-validation-for="ThirdName" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <label asp-for="FourthName">اسم العائلة</label>
+                                    <div class="form-group">
+                                        <input asp-for="FourthName" class="form-control" />
+                                        <span asp-validation-for="FourthName" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label asp-for="IdentityNumber">رقم الهوية</label>
+                                    <div class="form-group">
+                                        <input asp-for="IdentityNumber" class="form-control" />
+                                        <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="FK_JehazId">الادارة</label>
+                                    <div class="form-group">
+                                        <select class="form-control select2" asp-for="@Model.FK_JehazId" asp-items="@Model.JehazList" style="width: 100%;">
+                                            <option selected="selected">اختر الادارة</option>
+                                        </select>
+                                        <span asp-validation-for="FK_JehazId" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label asp-for="FinanceNumber">الرقم المالي</label>
+                                    <div class="form-group">
+                                        <input asp-for="FinanceNumber" class="form-control" />
+                                        <span asp-validation-for="FinanceNumber" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <label asp-for="PhoneNumber">رقم الهاتف</label>
+                                    <div class="form-group">
+                                        <input asp-for="PhoneNumber" class="form-control" />
+                                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <label asp-for="FK_MilitaryRankId">الادارة</label>
+                                    <div class="form-group">
+                                        <select class="form-control select2" asp-for="@Model.FK_MilitaryRankId" asp-items="@Model.MilitaryRankList" style="width: 100%;">
+                                            <option selected="selected">اختر الرتبة</option>
+                                        </select>
+                                        <span asp-validation-for="FK_MilitaryRankId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <div class="form-group">
+                                <label asp-for="UserName">اسم المستخدم</label>
+                                @if (string.IsNullOrEmpty(Model.Id))
+                                {
+                                    <input asp-for="UserName" class="form-control" /> }
+                                else
+                                {
+                                    <input asp-for="UserName" class="form-control" readonly />}
+                                       <span asp-validation-for="UserName" class="text-danger"></span>
+                                     </div>
+
+
+                            @if (string.IsNullOrEmpty(Model.Id))
+                            {
+                                    <div class="form-group">
+                                        <label asp-for="Password">كلمة المرور</label>
+                                        <input asp-for="Password" class="form-control" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div> }
+                                else
+                                {
+                                    <div class="form-group" hidden>
+                                        <label asp-for="Password">كلمة المرور</label>
+                                        <input asp-for="Password" class="form-control" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>}
+
+                                            @if (string.IsNullOrEmpty(Model.Id))
+                                            {
+                                                <div class="form-group">
+                                                    <label asp-for="ConfirmPassword">تأكيد كلمة المرور</label>
+                                                    <input asp-for="ConfirmPassword" class="form-control" />
+                                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                                </div>
+                                             }
+                                             else
+                                             {
+                                                <div class="form-group" hidden>
+                                                    <label asp-for="ConfirmPassword">تأكيد كلمة المرور</label>
+                                                    <input asp-for="ConfirmPassword" class="form-control" />
+                                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                                </div>
+                                             }
+
+
+                                        </div>
+
+                        <div class="col-md-3">
+                            <div class="row" @*style="background: #bbd3f1"*@>
+                                <p>
+                                    الصلاحيات
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card-footer">
+                    <button type="submit" id="btnSaveArchive" class="btn btn-primary"><i class="fa fa-scanner"></i>تسجيل</button>
+                    <button type="reset" class="btn btn-secondary">الغاء</button>
+                </div>
+            </form>
+
+
+
+
+            <!--begin: Code-->
+            <!--end: Code-->
+            <!--end::Form-->
+        </div>
+        <!--end::Card-->
+    </div>
+</div>
+
+
+<partial name="_ValidationScriptsPartial" />
+
+
+@section CssLinks{
+    <link href="~/assets/plugins/custom/jstree/jstree.bundle.rtl.css" rel="stylesheet" />
+}
+@section ScriptsLinks{
+    <script src="assets/js/pages/crud/forms/widgets/select2.js"></script>
+
+    <script src="~/assets/plugins/custom/jstree/jstree.bundle.js"></script>
+    <script src="~/general.js"></script>
+}
+
+@section Scripts {
+
+<script>
+    (function () {
+        $(function () {
+
+            $('.select2').select2({});
+
+        });
+
+    })();
+    completed = function (response) {
+        var result = response.responseJSON
+        console.log(response.responseJSON)
+        $.toast({
+            heading: 'Success',
+            text: result.msg,
+            showHideTransition: 'slide',
+            //icon: result.color
+        })
+    };
+
+    failure = function (jqXHR, status) {
+        $.toast({
+            heading: 'Error',
+            text: 'Uncaught Error.\n' + jqXHR.responseText,
+            //showHideTransition: 'fade',
+            //icon: 'error'
+        })
+    };
+
+</script>
+}

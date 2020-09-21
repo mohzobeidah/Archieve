@@ -1,4 +1,5 @@
 ﻿using Archieve.DataAccess.Configuration;
+using Archieve.DataAccess.ViewModel;
 using Archieve.DatabaseLayer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -26,6 +27,9 @@ namespace Archieve.DataAccess.DataConfigration
         public DbSet<Status> Statuses { get; set; }
         public DbSet<WorkPlace> WorkPlaces { get; set; }
         public DbSet<StructureType> StructureTypes { get; set; }
+        public DbSet<MilitaryRank> MilitaryRanks { get; set; }
+
+        public DbSet<UserActivity> UserActivities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,6 +43,8 @@ namespace Archieve.DataAccess.DataConfigration
             new WorkPlaceConfigration(modelBuilder.Entity<WorkPlace>());
             new StructureTypeConfigration(modelBuilder.Entity<StructureType>());
             new MailArchiveConfigration(modelBuilder.Entity<MailArchive>());
+            new MilitaryRankConfigration(modelBuilder.Entity<MilitaryRank>());
+
             modelBuilder.Ignore<GeneralEntity>();
         }
     }

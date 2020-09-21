@@ -16,10 +16,16 @@ namespace Archieve.DatabaseLayer.Models
         public string ThirdName { get; set; }
         public string FourthName { get; set; }
         public int  IdentityNumber { get; set; }
+        public int FinanceNumber { get; set; }
+
         public int FK_JehazId { get; set; }
         [ForeignKey(nameof(FK_JehazId))]
         public virtual WorkPlace WorkPlace { get; set; }
-      
+
+        public int FK_MilitaryRankId { get; set; }
+        [ForeignKey(nameof(FK_MilitaryRankId))]
+        public virtual MilitaryRank MilitaryRank { get; set; }
+
         public ICollection<MailArchive> mailArchives{ get; set; }
 
         public virtual ICollection<MangerDepartment> MangerDepartment { get; set; }

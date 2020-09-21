@@ -13,6 +13,7 @@ namespace Archieve.Controllers
     {
         private readonly IMapper mapper;
         private readonly IWorkPlaceService workPlaceService;
+        private readonly IUserService userService;
 
         //private readonly IClassificationService classification;
         //private readonly IMailTypeService mailType;
@@ -24,17 +25,19 @@ namespace Archieve.Controllers
 
         public StructureController(IHttpContextAccessor accessor,
                                  IMapper mapper,
-                                 IWorkPlaceService workPlaceService
-                                 //IClassificationService classification,
-                                 //IMailTypeService mailType,
-                                 //IPostTypeService postType,
-                                 //ISecurityService security,
-                                 //IStatusService status
-            ) : base(accessor)
+                                 IWorkPlaceService workPlaceService,
+                                 IUserService userService
+            //IClassificationService classification,
+            //IMailTypeService mailType,
+            //IPostTypeService postType,
+            //ISecurityService security,
+            //IStatusService status
+            ) : base(accessor, userService)
         {
 
             this.mapper = mapper;
             this.workPlaceService = workPlaceService;
+            this.userService = userService;
             //this.classification = classification;
             //this.mailType = mailType;
             //this.postType = postType;
